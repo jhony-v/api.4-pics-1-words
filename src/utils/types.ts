@@ -4,12 +4,12 @@ export interface IUser {
     pass ?: string;
 }
 
-
 export interface  IWord { 
     idword ?: number;
     iduser ?: string;
-    letter ?: string;
+    letters ?: string;
     images ?: [string];
+    points ?: number;
 }
 
 export interface ICreate {
@@ -17,7 +17,6 @@ export interface ICreate {
 }
 
 export interface IActions<T>{
-    getProperties(properties : T): T;
     create?(properties: T, requestAnswer : Function) : any;
     update?(properties: T, requestAnswer : Function) : any;
     delete?(properties: T, requestAnswer : Function) : any;

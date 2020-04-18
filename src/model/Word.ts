@@ -5,32 +5,27 @@ import { WORD } from "../utils/constants";
 
 class Word extends Model implements IActions<IWord> {
 
-    constructor ( database : firebase.database.Database ) {
+    constructor(database: firebase.database.Database) {
         super(database);
     }
 
 
-    getProperties = ( { idword , letter , images  } : IWord ) : IWord => {
-        return {idword,letter,images};
-    }
-    
-    
-    create = (properties : IWord , request : Function) => {
-        const { iduser , letter , images } = properties;
-        const idword = createKeyDocument(WORD,this.db);
-        return this.db.ref(WORD+"/"+idword).set({ iduser , letter , images  }, error => {
-             request(status(error));
+    create = (properties: IWord, request: Function) => {
+        const { iduser, letters, images, points } = properties;
+        const idword = createKeyDocument(WORD, this.db);
+        return this.db.ref(WORD + "/" + idword).set({ iduser, letters, images, points }, error => {
+            request(status(error));
         });
     }
 
 
-    readAll = (request : Function) => {
-        return this.db.ref(WORD).on('value', data => request(data.toJSON()) );
+    readAll = (request: Function) => {
+        return this.db.ref(WORD).once('value').then(data => request(data.toJSON()));
     }
 
-    
-    byId = ( idword : string , request : Function ) => {
-        return this.db.ref(WORD+"/"+idword).on('value', data => request(data.toJSON()) );
+
+    byId = (idword: string, request: Function) => {
+        return this.db.ref(WORD + "/" + idword).on('value', data => request(data.toJSON()));
     }
 
 
