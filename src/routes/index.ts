@@ -48,4 +48,10 @@ router.get("/word/:id", (req: Request, res: Response) => {
 });
 
 
+router.post("/word/increment", (req: Request, res: Response) => {
+    const { id } = req.body;
+    return word.incrementPoints(id, (e: IStatus) => res.json(e));
+});
+
+
 export default router;

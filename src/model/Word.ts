@@ -29,6 +29,15 @@ class Word extends Model implements IActions<IWord> {
     }
 
 
+    incrementPoints = (idword: string, request: Function) => {
+        console.log(idword);
+        const wordSelected = this.db.ref(WORD + "/" + idword);
+        const transaction = wordSelected.child("points").transaction(points => points + 1, error => {
+            return request(status(error));
+        });
+        return transaction;
+    }
+
 }
 
 
