@@ -1,16 +1,16 @@
 import { IUser } from "../types/IUser";
 import { IActions } from "../types/IAction";
 import { IStatus } from "../types/IStatus";
-import { USER } from "../utils/constants";
 import { status, createKeyDocument } from "../utils/help";
 import Model from "./Model";
 import CryptoJs from "crypto-js";
+import { FireDataBase } from "../types/IFirebase";
 
 
 class User extends Model implements IActions<IUser> {
 
-    constructor(database: firebase.database.Database) {
-        super(database);
+    constructor(database: FireDataBase) {
+        super(database,"user");
     }
 
 
@@ -21,12 +21,12 @@ class User extends Model implements IActions<IUser> {
 
     create = (properties: IUser, request: Function) => {
         const { username, pass } = properties;
-        const iduser = createKeyDocument(USER, this.db);
+        const iduser = createKeyDocument(this.name, this.db);
         const propertiesUserCreate: IUser = {
             username,
             pass: this.encryptPassword(pass)
         };
-        return this.db.ref(USER + "/" + iduser).set(propertiesUserCreate, error => {
+        return this.db.ref(this.name + "/" + iduser).set(propertiesUserCreate, error => {
             request(status(error));
         });
     }
@@ -38,7 +38,7 @@ class User extends Model implements IActions<IUser> {
         let user: IUser;
         let checkUser: IUser;
         let data: { [key: string]: IUser };
-        return this.db.ref(USER).orderByChild("username").equalTo(<string>username).on('value', value => {
+        return this.db.ref(this.name).orderByChild("username").equalTo(<string>username).on('value', value => {
             data = <{ [key: string]: IUser }>value.toJSON();
             for (let i in data) {
                 checkUser = data[i];
@@ -56,7 +56,6 @@ class User extends Model implements IActions<IUser> {
     encryptPassword = (password: string = ""): string => {
         return CryptoJs.SHA256(password).toString();
     }
-
 
 }
 
