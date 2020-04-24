@@ -1,0 +1,1 @@
+export const KEY_ENCRYPT_PASSWORD = "jhony10vc2001";
