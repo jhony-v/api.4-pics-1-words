@@ -28,13 +28,6 @@ router.post("/create", (req: Request, res: Response) => {
 })
 
 
-// check if exists the user
-router.post("/user/check", (req: Request, res: Response) => {
-    const parameters = req.body;
-    return user.checkIfExistUser(parameters, (e: IStatus) => res.json(e));
-})
-
-
 // get all words
 router.get("/word", (req: Request, res: Response) => {
     return word.readAll((e: [Object] & Object) => res.json(e));
