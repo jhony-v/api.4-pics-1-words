@@ -1,4 +1,4 @@
-import { IStatus } from "./types";
+import { IStatus } from "../types/IStatus";
 
 export const status = (error : any) : IStatus => {
     return { status : ( error ? false : true ) }

@@ -1,17 +1,3 @@
-export interface IUser {
-    iduser ?: string;
-    username ?: string;
-    pass ?: string;
-}
-
-export interface  IWord { 
-    idword ?: number;
-    iduser ?: string;
-    letters ?: string;
-    images ?: [string];
-    points ?: number;
-}
-
 export interface ICreate {
     type : string;
 }
@@ -22,8 +8,3 @@ export interface IActions<T>{
     delete?(properties: T, requestAnswer : Function) : any;
     readAll(requestAnswer : Function) : any;    
 }
-
-export interface IStatus {
-    status : boolean
-}
-

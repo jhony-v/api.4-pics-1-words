@@ -1,4 +1,5 @@
-import { IWord, IActions } from "../utils/types";
+import { IWord } from "../types/IWord";
+import  { IActions } from "../types/IAction";
 import Model from "./Model";
 import { status, createKeyDocument } from "../utils/help";
 import { WORD } from "../utils/constants";

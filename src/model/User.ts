@@ -1,4 +1,6 @@
-import { IUser, IActions, IStatus } from "../utils/types";
+import { IUser } from "../types/IUser";
+import { IActions } from "../types/IAction";
+import { IStatus } from "../types/IStatus";
 import { USER } from "../utils/constants";
 import { status, createKeyDocument } from "../utils/help";
 import Model from "./Model";

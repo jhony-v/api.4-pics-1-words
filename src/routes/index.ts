@@ -3,7 +3,7 @@ import User from "../model/User";
 import Word from "../model/Word";
 import { USER, WORD } from "../utils/constants";
 import firebase from "../config/authFirebase";
-import { IStatus } from "../utils/types";
+import { IStatus } from "../types/IStatus";
 import { status } from "../utils/help";
 
 
