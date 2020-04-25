@@ -19,9 +19,15 @@ class User extends Model implements IActions<IUser> {
     }
 
 
+    /**
+     * Create new users in the application 
+     * @param properties properties of user to create
+     * @param request callback to get the response
+     */
     create = (properties: IUser, request: Function) => {
         const { username, pass } = properties;
         const iduser = createKeyDocument(this.name, this.db);
+
         const propertiesUserCreate: IUser = {
             username,
             pass: this.encryptPassword(pass)
@@ -32,6 +38,11 @@ class User extends Model implements IActions<IUser> {
     }
 
 
+    /**
+     * Check that the user is registered in the application
+     * @param properties properties to check if exists the user ( username , password )
+     * @param request callback to get the response
+     */
     checkIfExistUser = (properties: IUser, request: Function) => {
         const { username, pass } = properties;
         let state: IStatus = { status: false };
@@ -53,6 +64,10 @@ class User extends Model implements IActions<IUser> {
     }
 
 
+    /**
+     * Encrypt the password of user 
+     * @param password text password of user 
+     */
     encryptPassword = (password: string = ""): string => {
         return CryptoJs.SHA256(password).toString();
     }
