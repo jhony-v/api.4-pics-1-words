@@ -2,25 +2,42 @@ import { Request, Response } from "express";
 import firebase from "../config/authFirebase";
 import Word from "../models/Word";
 import { IStatus } from "../types/IStatus";
+import { FireDataBase } from "../types/IFirebase";
 
-const database: firebase.database.Database = firebase.database();
+const database: FireDataBase = firebase.database();
 const word: Word = new Word(database);
 
 export const getAllWords = (req: Request, res: Response) => {
-    return word.readAll((data: [Object] & Object) => res.json(data));
-};
+    const all = word.readAll((data: [Object] & Object) => {
+        return res.json(data);
+    }); 
+
+    return all;
+}
 
 export const getWordById = (req: Request, res: Response) => {
     const { id } = req.params;
-    return word.byId(id, (data: Object) => res.json(data));
-};
+    const byId = word.byId(id, (data: Object) => {
+        return res.json(data);
+    });
+
+    return byId;
+}
 
 export const createNewWord = (req: Request, res: Response) => {
     const parameters = req.body;
-    return word.create(parameters, (status: IStatus) => res.json(status));
-};
+    const create = word.create(parameters, (status: IStatus) => {
+        return res.json(status);
+    });
+
+    return create;
+}
 
 export const incrementPointsWordDiscover = (req: Request, res: Response) => {
     const { id } = req.body;
-    return word.incrementPoints(id, (status: IStatus) => res.json(status));
-};
+    const incrementPoints = word.incrementPoints(id, (status: IStatus) => {
+        return res.json(status);
+    });
+
+    return word;
+}

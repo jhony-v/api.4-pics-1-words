@@ -2,16 +2,25 @@ import { Request, Response } from "express";
 import firebase from "../config/authFirebase";
 import User from "../models/User";
 import { IStatus } from "../types/IStatus";
+import { FireDataBase } from "../types/IFirebase";
 
-const database: firebase.database.Database = firebase.database();
+const database: FireDataBase = firebase.database();
 const user : User = new User(database);
 
 export const createUser = ( req : Request , res : Response) => {
     const parameters = req.body;
-    return user.create(parameters, (status: IStatus) => res.json(status));
+    const create = user.create(parameters, (status: IStatus) => {
+        return res.json(status);
+    });
+    
+    return create;
 }
 
 export const checkIfExists = ( req : Request , res : Response) => {
     const parameters = req.body;
-    return user.checkIfExistUser(parameters, (status: IStatus) => res.json(status));
+    const exists =  user.checkIfExistUser(parameters, (status: IStatus) => {
+        return res.json(status);
+    });
+    
+    return exists;
 }
