@@ -3,12 +3,13 @@ import firebase from "../config/authFirebase";
 import Word from "../models/Word";
 import { IStatus } from "../types/IStatus";
 import { FireDataBase } from "../types/IFirebase";
+import { IWord } from "../types/IWord";
 
 const database: FireDataBase = firebase.database();
 const word: Word = new Word(database);
 
 export const getAllWords = (req: Request, res: Response) => {
-    const all = word.readAll((data: [Object] & Object) => {
+    const all = word.readAll((data: IWord) => {
         return res.json(data);
     }); 
 
@@ -17,7 +18,7 @@ export const getAllWords = (req: Request, res: Response) => {
 
 export const getWordById = (req: Request, res: Response) => {
     const { id } = req.params;
-    const byId = word.byId(id, (data: Object) => {
+    const byId = word.byId(id, (data: IWord) => {
         return res.json(data);
     });
 
@@ -41,3 +42,5 @@ export const incrementPointsWordDiscover = (req: Request, res: Response) => {
 
     return word;
 }
+
+
