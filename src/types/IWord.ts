@@ -3,6 +3,7 @@ export interface IWord {
   letters?: string;
   images?: [string] | TImages;
   points?: number;
+  dateCreated?: string;
 }
 
 export type TImages = { [key: number]: string };

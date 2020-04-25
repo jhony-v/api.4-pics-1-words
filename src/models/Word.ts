@@ -16,9 +16,9 @@ class Word extends Model implements IActions<IWord> {
      * @param properties get properties of user (iduser, letters, images, points)
      */
     create = (properties: IWord, request: Function) => {
-        const { iduser, letters, images, points } = properties;
+        const { iduser, letters, images, points , dateCreated } = properties;
         const idword = createKeyDocument(this.name, this.db);
-        return this.db.ref(this.name + "/" + idword).set({ iduser, letters, images, points }, error => {
+        return this.db.ref(this.name + "/" + idword).set({ iduser, letters, images, points , dateCreated }, error => {
             request(status(error));
         });
     }
