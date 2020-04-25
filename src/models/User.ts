@@ -53,7 +53,7 @@ class User extends Model implements IActions<IUser> {
             data = <{ [key: string]: IUser }>value.toJSON();
             for (let i in data) {
                 checkUser = data[i];
-                if (checkUser.username === username && checkUser.pass === (pass)) {
+                if (checkUser.username === username && checkUser.pass === this.encryptPassword(pass)) {
                     state.status = true;
                     user = { ...data[i], iduser: i };
                     break;
