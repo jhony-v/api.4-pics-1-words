@@ -1,7 +1,7 @@
 import { IUser } from "../types/IUser";
 import { IActions } from "../types/IAction";
 import { IStatus } from "../types/IStatus";
-import { status, createKeyDocument } from "../utils/help";
+import { status, createKeyDocument } from "../utils/helpers";
 import Model from "./Model";
 import CryptoJs from "crypto-js";
 import { FireDataBase } from "../types/IFirebase";
