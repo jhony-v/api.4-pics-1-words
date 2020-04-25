@@ -1,22 +1,12 @@
-import { Router, Request, Response } from "express";
-import firebase from "../config/authFirebase";
-import User from "../models/User";
-import { IStatus } from "../types/IStatus";
+import { Router } from "express";
+import * as user from "../controllers/user.controller";
 
 const router = Router();
-const database: firebase.database.Database = firebase.database();
-const user : User = new User(database);
 
 // create new user
-router.post("/", ( req : Request , res : Response) => {
-    const parameters = req.body;
-    return user.create(parameters, (status: IStatus) => res.json(status));
-})
+router.post("/",user.createUser);
 
 // check if exists the user
-router.post("/exists", ( req : Request , res : Response) => {
-    const parameters = req.body;
-    return user.checkIfExistUser(parameters, (status: IStatus) => res.json(status));
-})
+router.post("/exists",user.checkIfExists);
 
 export default router;
