@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import firebase from "../config/authFirebase";
-import User from "../model/User";
+import User from "../models/User";
 import { IStatus } from "../types/IStatus";
 
 const router = Router();

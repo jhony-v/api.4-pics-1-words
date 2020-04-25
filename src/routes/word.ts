@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import firebase from "../config/authFirebase";
-import Word from "../model/Word";
+import Word from "../models/Word";
 import { IStatus } from "../types/IStatus";
 
 const router = Router();
