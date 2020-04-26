@@ -9,4 +9,6 @@ router.post("/",user.createUser);
 // check if exists the user
 router.post("/exists",user.checkIfExists);
 
+
+
 export default router;

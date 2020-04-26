@@ -2,3 +2,4 @@ node_modules
 /src/config/authFirebase.ts
 /src/config/env.ts
 /dist
+tokens.json
