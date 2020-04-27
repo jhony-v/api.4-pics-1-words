@@ -24,3 +24,11 @@ export const checkIfExists = ( req : Request , res : Response) => {
     
     return exists;
 }
+
+export const updateUsername = ( req : Request , res : Response) => {
+    const parameters = req.body;
+    const username = user.updateUsername(parameters , (status : IStatus) => {
+        return res.json(status)
+    });
+    return username;
+}

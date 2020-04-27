@@ -72,6 +72,18 @@ class User extends Model implements IActions<IUser> {
         return CryptoJs.SHA256(password).toString();
     }
 
+
+    /**
+     * update the username
+     * @param iduser id of username
+     * @param username new username
+     */
+    updateUsername = ( { iduser , username } : IUser, request : Function) => {
+        return this.db.ref(this.name + "/" + iduser).child('username').set(username,error => {
+            request(status(error));
+        })
+    }
+
 }
 
 export default User;
