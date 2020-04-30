@@ -1,3 +1,4 @@
+import firebase from "firebase-admin";
 import { IStatus } from "../types/IStatus";
 
 export const status = (error : any) : IStatus => {

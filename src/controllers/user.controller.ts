@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import firebase from "../config/authFirebase";
+import firebase from "../config/firebase";
 import User from "../models/User";
 import { IStatus } from "../types/IStatus";
 import { FireDataBase } from "../types/IFirebase";
