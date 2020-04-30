@@ -1,5 +1,5 @@
 node_modules
-/src/config/authFirebase.ts
 /src/config/env.ts
 /dist
+/src/key.json
 tokens.json
