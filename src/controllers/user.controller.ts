@@ -1,11 +1,8 @@
 import { Request, Response } from "express";
-import firebase from "../config/firebase";
 import User from "../models/User";
 import { IStatus } from "../types/IStatus";
-import { FireDataBase } from "../types/IFirebase";
 
-const database: FireDataBase = firebase.database();
-const user : User = new User(database);
+const user : User = new User();
 
 export const createUser = ( req : Request , res : Response) => {
     const parameters = req.body;

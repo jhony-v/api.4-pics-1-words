@@ -2,12 +2,10 @@ import { IWord } from "../types/IWord";
 import  { IActions } from "../types/IAction";
 import Model from "./Model";
 import { status, createKeyDocument } from "../utils/helpers";
-import { FireDataBase } from "../types/IFirebase";
 
 class Word extends Model implements IActions<IWord> {
-
-    constructor(database: FireDataBase) {
-        super(database,"word");
+    constructor() {
+        super("word");
     }
 
 

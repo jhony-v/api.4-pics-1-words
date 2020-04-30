@@ -1,12 +1,9 @@
 import { Request, Response } from "express";
-import firebase from "../config/firebase";
 import Word from "../models/Word";
 import { IStatus } from "../types/IStatus";
-import { FireDataBase } from "../types/IFirebase";
 import { IWord } from "../types/IWord";
 
-const database: FireDataBase = firebase.database();
-const word: Word = new Word(database);
+const word: Word = new Word();
 
 export const getAllWords = (req: Request, res: Response) => {
     const all = word.readAll((data: IWord) => {

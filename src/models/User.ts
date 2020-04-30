@@ -6,13 +6,10 @@ import Model from "./Model";
 import CryptoJs from "crypto-js";
 import { FireDataBase } from "../types/IFirebase";
 
-
 class User extends Model implements IActions<IUser> {
-
-    constructor(database: FireDataBase) {
-        super(database,"user");
+    constructor() {
+        super("user");
     }
-
 
     readAll = (request: Function) => {
         return [{}];
