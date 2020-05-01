@@ -1,10 +1,10 @@
 import User from "../models/User";
 import { IStatus } from "../types/IStatus";
-import { IRouteController } from "../types/IExpress";
+import { Request, Response } from "express";
 
 const user: User = new User();
 
-export const createUser = ({ req, res }: IRouteController) => {
+export const createUser = (req: Request, res: Response) => {
   const parameters = req.body;
   const create = user.create(parameters, (status: IStatus) => {
     return res.json(status);
@@ -13,7 +13,7 @@ export const createUser = ({ req, res }: IRouteController) => {
   return create;
 };
 
-export const checkIfExists = ({ req, res }: IRouteController) => {
+export const checkIfExists = (req: Request, res: Response) => {
   const parameters = req.body;
   const exists = user.checkIfExistUser(parameters, (status: IStatus) => {
     return res.json(status);
@@ -22,7 +22,7 @@ export const checkIfExists = ({ req, res }: IRouteController) => {
   return exists;
 };
 
-export const updateUsername = ({ req, res }: IRouteController) => {
+export const updateUsername = (req: Request, res: Response) => {
   const parameters = req.body;
   const username = user.updateUsername(parameters, (status: IStatus) => {
     return res.json(status);

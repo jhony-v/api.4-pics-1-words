@@ -1,11 +1,11 @@
 import Word from "../models/Word";
 import { IStatus } from "../types/IStatus";
 import { IWord } from "../types/IModel";
-import { IRouteController } from "../types/IExpress";
+import { Request, Response } from "express";
 
 const word: Word = new Word();
 
-export const getAllWords = ({ req, res }: IRouteController) => {
+export const getAllWords = (req: Request, res: Response) => {
   const all = word.readAll((data: IWord) => {
     return res.json(data);
   });
@@ -13,7 +13,7 @@ export const getAllWords = ({ req, res }: IRouteController) => {
   return all;
 };
 
-export const getWordById = ({ req, res }: IRouteController) => {
+export const getWordById = (req: Request, res: Response) => {
   const { id } = req.params;
   const byId = word.byId(id, (data: IWord) => {
     return res.json(data);
@@ -22,7 +22,7 @@ export const getWordById = ({ req, res }: IRouteController) => {
   return byId;
 };
 
-export const createNewWord = ({ req, res }: IRouteController) => {
+export const createNewWord = (req: Request, res: Response) => {
   const parameters = req.body;
   const create = word.create(parameters, (status: IStatus) => {
     return res.json(status);
@@ -31,7 +31,7 @@ export const createNewWord = ({ req, res }: IRouteController) => {
   return create;
 };
 
-export const incrementPointsWordDiscover = ({ req, res }: IRouteController) => {
+export const incrementPointsWordDiscover = (req: Request, res: Response) => {
   const { id } = req.body;
   const incrementPoints = word.incrementPoints(id, (status: IStatus) => {
     return res.json(status);

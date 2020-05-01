@@ -1,6 +1,6 @@
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { KEY_JWT } from "../config/env";
-import { Request, Response, NextFunction } from "express";
 
 // authorization to access the service
 const auth = (req: Request, res: Response, next: NextFunction) => {
