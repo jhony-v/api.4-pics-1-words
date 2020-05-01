@@ -1,6 +1,6 @@
 import Word from "../models/Word";
 import { IStatus } from "../types/IStatus";
-import { IWord } from "../types/IWord";
+import { IWord } from "../types/IModel";
 import { IRouteController } from "../types/IExpress";
 
 const word: Word = new Word();

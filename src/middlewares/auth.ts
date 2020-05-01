@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import { KEY_JWT } from "../config/env";
-import { IRouteController } from "../types/IExpress";
+import { Request, Response, NextFunction } from "express";
 
 // authorization to access the service
-const auth = ({ req, res, next }: IRouteController) => {
+const auth = (req: Request, res: Response, next: NextFunction) => {
   const headers = req.headers;
   const authorization = headers["authorization"] || headers["x-access-token"];
 
