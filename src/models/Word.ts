@@ -1,6 +1,5 @@
-import { IWord } from "../types/IWord";
-import  { IActions } from "../types/IAction";
 import Model from "./Model";
+import { IWord , IActions } from "../types/IModel";
 import { status, createKeyDocument } from "../utils/helpers";
 
 class Word extends Model implements IActions<IWord> {
