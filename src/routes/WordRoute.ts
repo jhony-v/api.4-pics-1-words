@@ -1,5 +1,5 @@
 import * as controller from "../controllers/word.controller";
-import Route from "./routes";
+import Route from "./Route";
 
 class Word extends Route {
   constructor() {

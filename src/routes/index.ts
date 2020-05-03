@@ -1,6 +1,6 @@
 import { Router } from "express";
-import Word from "./word";
-import User from "./user";
+import Word from "./WordRoute";
+import User from "./UserRoute";
 
 const router = Router();
 

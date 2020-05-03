@@ -1,5 +1,5 @@
 import * as controller from "../controllers/user.controller";
-import Route from "./routes";
+import Route from "./Route";
 
 class User extends Route{
   constructor() {
