@@ -1,18 +1,19 @@
-import { Router } from "express";
-import { IStatus } from "../types/IStatus";
-import * as word from "../controllers/word.controller";
+import * as controller from "../controllers/word.controller";
+import Route from "./routes";
 
-const router = Router();
+class Word extends Route {
+  constructor() {
+    super();
+  }
 
-//get all words
-router.get("/", word.getAllWords);
-//get a wrod according to id
-router.get("/:id", word.getWordById);
-// create new word
-router.post("/", word.createNewWord);
-//update word
-router.put("/",word.updateWord);
-//increment the points of word
-router.post("/increment", word.incrementPointsWordDiscover);
+  initialize() {
+    this.router.get("/", controller.getAllWords); // get all words
+    this.router.get("/:id", controller.getWordById); // get only word
+    this.router.post("/", controller.createNewWord); // create new word
+    this.router.put("/", controller.updateWord); // update one word
+    this.router.post("/increment", controller.incrementPointsWordDiscover); // increment points of word
+    return this.start();
+  }
+}
 
-export default router;
+export default Word;

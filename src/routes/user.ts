@@ -1,13 +1,17 @@
-import { Router } from "express";
-import * as user from "../controllers/user.controller";
+import * as controller from "../controllers/user.controller";
+import Route from "./routes";
 
-const router = Router();
+class User extends Route{
+  constructor() {
+    super();
+  }
 
-// create new user
-router.post("/", user.createUser);
-// check if exists the user
-router.post("/exists", user.checkIfExists);
-//update username
-router.put("/", user.updateUsername);
+  initialize() {
+    this.router.post("/", controller.createUser); // create user
+    this.router.post("/exists", controller.checkIfExists); // check if the user exists
+    this.router.put("/", controller.updateUsername); // update username
+    return this.start();
+  }
+}
 
-export default router;
+export default User;
