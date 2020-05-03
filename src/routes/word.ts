@@ -5,15 +5,14 @@ import * as word from "../controllers/word.controller";
 const router = Router();
 
 //get all words
-router.get("/",word.getAllWords);
-
+router.get("/", word.getAllWords);
 //get a wrod according to id
-router.get("/:id",word.getWordById);
-
+router.get("/:id", word.getWordById);
 // create new word
-router.post("/",word.createNewWord);
-
+router.post("/", word.createNewWord);
+//update word
+router.put("/",word.updateWord);
 //increment the points of word
-router.post("/increment",word.incrementPointsWordDiscover);
+router.post("/increment", word.incrementPointsWordDiscover);
 
 export default router;

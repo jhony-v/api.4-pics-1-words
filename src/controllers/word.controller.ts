@@ -32,6 +32,15 @@ export const createNewWord = (req: Request, res: Response) => {
   return create;
 };
 
+export const updateWord = ( req: Request , res: Response) => {
+  const parameters = req.body;
+  const update = word.updateWord(parameters ,(status : IStatus) => {
+    return res.json(status);
+  });
+  
+  return update;
+};
+
 export const incrementPointsWordDiscover = (req: Request, res: Response) => {
   const { id } = req.body;
   const incrementPoints = word.incrementPoints(id, (status: IStatus) => {

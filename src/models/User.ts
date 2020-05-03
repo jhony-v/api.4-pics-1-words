@@ -58,16 +58,7 @@ class User extends Model {
         });
     }
 
-
-    /**
-     * Encrypt the password of user 
-     * @param password text password of user 
-     */
-    encryptPassword = (password: string = ""): string => {
-        return CryptoJs.SHA256(password).toString();
-    }
-
-
+    
     /**
      * update the username
      * @param iduser id of username
@@ -79,6 +70,15 @@ class User extends Model {
         })
     }
 
+
+    /**
+     * Encrypt the password of user 
+     * @param password text password of user 
+     */
+    encryptPassword = (password: string = ""): string => {
+        return CryptoJs.SHA256(password).toString();
+    }
+    
 }
 
 export default User;

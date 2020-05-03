@@ -1,5 +1,5 @@
 import Model from "./Model";
-import { IWord } from "../types/IModel";
+import { IWord, TWord } from "../types/IModel";
 import { status, createKeyDocument } from "../utils/helpers";
 import { IPagination } from "../types/IFirebase";
 
@@ -46,6 +46,26 @@ class Word extends Model {
         return this.db.ref(this.name + "/" + idword).on('value', data => request(data.toJSON()));
     }
 
+
+    /**
+     * Update the data of one word
+     * @param parametersWord
+     * @param request callback to get the response
+     */
+    updateWord = ( parametersWord : IWord , request : Function ) => {
+        const { idword , ...restParams } = parametersWord;
+        const wordSelected = this.db.ref(this.name + "/" + idword);
+        const insertParameters : {[key:string] : any} = restParams;
+        async function run(){
+            for ( let key in insertParameters ) {
+                await wordSelected.child(key).set(insertParameters[key]);
+            }
+        }
+        const complete = Promise.resolve(run()).then(error=>{
+            return request(status(error));
+        });
+        return complete;
+    }
 
     /**
      * Increase word points when discovered correctly

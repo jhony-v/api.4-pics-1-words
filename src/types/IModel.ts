@@ -7,6 +7,7 @@ export interface IUser {
 
 // types and interfaces of word
 export interface IWord {
+  idword?: string;
   iduser?: string;
   letters?: string;
   images?: [string] | TImages;
