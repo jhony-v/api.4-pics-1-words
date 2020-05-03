@@ -8,7 +8,6 @@ class Word extends Model {
         super("word");
     }
 
-
     /**
      * Create new word with basic and default parameters
      * @param properties get properties of user (iduser, letters, images, points)
@@ -20,7 +19,6 @@ class Word extends Model {
             request(status(error));
         });
     }
-
 
     /**
      * Returns all the words
@@ -36,7 +34,6 @@ class Word extends Model {
         .once('value').then(data => request(data.toJSON()));
     }
 
-
     /**
      * Returns all the data included in this word
      * @param idword id of word
@@ -45,7 +42,6 @@ class Word extends Model {
     byId = (idword: string, request: Function) => {
         return this.db.ref(this.name + "/" + idword).on('value', data => request(data.toJSON()));
     }
-
 
     /**
      * Update the data of one word
@@ -79,7 +75,6 @@ class Word extends Model {
         });
         return transaction;
     }
-
 }
 
 

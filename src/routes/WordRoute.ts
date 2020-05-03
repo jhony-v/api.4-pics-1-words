@@ -1,12 +1,12 @@
 import WordController from "../controllers/WordController";
 import Route from "./Route";
 
-class WordRoute extends Route<WordController> {
+export default class WordRoute extends Route<WordController> {
   constructor() {
     super(new WordController());
   }
 
-  initialize() {
+  public initialize() {
     this.router.get("/", this.controller.getAllWords); // get all words
     this.router.get("/:id", this.controller.getWordById); // get only word
     this.router.post("/", this.controller.createNewWord); // create new word
@@ -15,5 +15,3 @@ class WordRoute extends Route<WordController> {
     return this.start();
   }
 }
-
-export default WordRoute;

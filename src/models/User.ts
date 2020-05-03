@@ -9,17 +9,12 @@ class User extends Model {
         super("user");
     }
 
-    read = (request: Function) => {
-        return [{}];
-    }
-
-
     /**
      * Create new users in the application 
      * @param properties properties of user to create
      * @param request callback to get the response
      */
-    create = (properties: IUser, request: Function) => {
+    public create = (properties: IUser, request: Function) => {
         const { username, pass } = properties;
         const iduser = createKeyDocument(this.name, this.db);
 
@@ -32,13 +27,12 @@ class User extends Model {
         });
     }
 
-
     /**
      * Check that the user is registered in the application
      * @param properties properties to check if exists the user ( username , password )
      * @param request callback to get the response
      */
-    checkIfExistUser = (properties: IUser, request: Function) => {
+    public checkIfExistUser = (properties: IUser, request: Function) => {
         const { username, pass } = properties;
         let state: IStatus = { status: false };
         let user: IUser;
@@ -64,21 +58,19 @@ class User extends Model {
      * @param iduser id of username
      * @param username new username
      */
-    updateUsername = ( { iduser , username } : IUser, request : Function) => {
+    public updateUsername = ( { iduser , username } : IUser, request : Function) => {
         return this.db.ref(this.name + "/" + iduser).child('username').set(username,error => {
             request(status(error));
         })
     }
 
-
     /**
      * Encrypt the password of user 
      * @param password text password of user 
      */
-    encryptPassword = (password: string = ""): string => {
+    private encryptPassword = (password: string = ""): string => {
         return CryptoJs.SHA256(password).toString();
     }
-    
 }
 
 export default User;
