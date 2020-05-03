@@ -1,8 +1,9 @@
 import Model from "./Model";
-import { IWord , IActions } from "../types/IModel";
+import { IWord } from "../types/IModel";
 import { status, createKeyDocument } from "../utils/helpers";
+import { IPagination } from "../types/IFirebase";
 
-class Word extends Model implements IActions<IWord> {
+class Word extends Model {
     constructor() {
         super("word");
     }
@@ -25,8 +26,14 @@ class Word extends Model implements IActions<IWord> {
      * Returns all the words
      * @param request callback to get the response
      */
-    readAll = (request: Function) => {
-        return this.db.ref(this.name).once('value').then(data => request(data.toJSON()));
+    read = (properties: IPagination,request: Function) => {
+        const { start , limit } = properties;
+        const abs = (val : number) => Math.abs(val);
+        return this.db.ref(this.name)
+        .orderByChild("letters")
+        .startAt(abs(start || 0))
+        .limitToFirst(abs(limit ||10))
+        .once('value').then(data => request(data.toJSON()));
     }
 
 

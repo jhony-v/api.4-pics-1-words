@@ -6,7 +6,8 @@ import { Request, Response } from "express";
 const word: Word = new Word();
 
 export const getAllWords = (req: Request, res: Response) => {
-  const all = word.readAll((data: IWord) => {
+  const parameters = req.query;
+  const all = word.read(parameters,(data: IWord) => {
     return res.json(data);
   });
 

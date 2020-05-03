@@ -1,15 +1,15 @@
 import Model from "./Model";
 import CryptoJs from "crypto-js";
 import { IStatus } from "../types/IStatus";
-import { IUser , IActions } from "../types/IModel";
+import { IUser } from "../types/IModel";
 import { status, createKeyDocument } from "../utils/helpers";
 
-class User extends Model implements IActions<IUser> {
+class User extends Model {
     constructor() {
         super("user");
     }
 
-    readAll = (request: Function) => {
+    read = (request: Function) => {
         return [{}];
     }
 
