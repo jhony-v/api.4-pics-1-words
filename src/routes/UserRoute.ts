@@ -1,4 +1,4 @@
-import * as controller from "../controllers/user.controller";
+import * as controller from "../controllers/UserController";
 import Route from "./Route";
 
 class User extends Route{

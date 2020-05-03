@@ -1,4 +1,4 @@
-import * as controller from "../controllers/word.controller";
+import * as controller from "../controllers/WordController";
 import Route from "./Route";
 
 class Word extends Route {
