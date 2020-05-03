@@ -1,12 +1,16 @@
 import { Router } from "express";
 
-class Route {
-  public router: Router = Router();
-  public controller: any;
-  
-  start(): Router {
+export default abstract class Route<T_Controller> {
+  protected router: Router;
+  protected controller: T_Controller;
+
+  constructor(controller: T_Controller) {
+    this.router = Router();
+    this.controller = controller;
+  }
+
+  protected start(): Router {
     return this.router;
   }
 }
 
-export default Route;

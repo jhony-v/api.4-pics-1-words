@@ -1,17 +1,17 @@
-import * as controller from "../controllers/UserController";
+import UserController from "../controllers/UserController";
 import Route from "./Route";
 
-class User extends Route{
+class UserRoute extends Route<UserController> {
   constructor() {
-    super();
+    super(new UserController());
   }
 
   initialize() {
-    this.router.post("/", controller.createUser); // create user
-    this.router.post("/exists", controller.checkIfExists); // check if the user exists
-    this.router.put("/", controller.updateUsername); // update username
+    this.router.post("/", this.controller.createUser); // create user
+    this.router.post("/exists", this.controller.checkIfExists); // check if the user exists
+    this.router.put("/", this.controller.updateUsername); // update username
     return this.start();
   }
 }
 
-export default User;
+export default UserRoute;

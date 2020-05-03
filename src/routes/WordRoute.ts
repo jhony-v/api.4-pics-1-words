@@ -1,19 +1,19 @@
-import * as controller from "../controllers/WordController";
+import WordController from "../controllers/WordController";
 import Route from "./Route";
 
-class Word extends Route {
+class WordRoute extends Route<WordController> {
   constructor() {
-    super();
+    super(new WordController());
   }
 
   initialize() {
-    this.router.get("/", controller.getAllWords); // get all words
-    this.router.get("/:id", controller.getWordById); // get only word
-    this.router.post("/", controller.createNewWord); // create new word
-    this.router.put("/", controller.updateWord); // update one word
-    this.router.post("/increment", controller.incrementPointsWordDiscover); // increment points of word
+    this.router.get("/", this.controller.getAllWords); // get all words
+    this.router.get("/:id", this.controller.getWordById); // get only word
+    this.router.post("/", this.controller.createNewWord); // create new word
+    this.router.put("/", this.controller.updateWord); // update one word
+    this.router.post("/increment", this.controller.incrementPointsWordDiscover); // increment points of word
     return this.start();
   }
 }
 
-export default Word;
+export default WordRoute;

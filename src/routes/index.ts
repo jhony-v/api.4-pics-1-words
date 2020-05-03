@@ -1,10 +1,10 @@
 import { Router } from "express";
-import Word from "./WordRoute";
-import User from "./UserRoute";
+import WordRoute from "./WordRoute";
+import UserRoute from "./UserRoute";
 
 const router = Router();
 
-router.use("/word", new Word().initialize());
-router.use("/user", new User().initialize());
+router.use("/word", new WordRoute().initialize());
+router.use("/user", new UserRoute().initialize());
 
 export default router;

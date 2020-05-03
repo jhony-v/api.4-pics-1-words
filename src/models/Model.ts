@@ -1,7 +1,7 @@
 import { FireDataBase } from "../types/IFirebase";
 import firebase from "../config/firebase";
 
-abstract class Model {
+export default abstract class Model {
     protected db: FireDataBase;
     protected name: string;
 
@@ -10,5 +10,3 @@ abstract class Model {
         this.name = modelName;
     }
 }
-
-export default Model;
