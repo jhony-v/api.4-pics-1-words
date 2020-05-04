@@ -4,6 +4,6 @@ import Server from "./server";
 const app : Express = express();
 const server : Server = new Server(app);
 
-server.api("/api/v1");
 server.configuration();
+server.api("/api/v1");
 server.run();
