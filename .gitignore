@@ -3,3 +3,4 @@ node_modules
 /dist
 /src/key.json
 tokens.json
+.env

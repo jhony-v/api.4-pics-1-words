@@ -1,5 +1,5 @@
 import Model from "./Model";
-import { IWord, TWord } from "../types/IModel";
+import { IWord } from "../types/IModel";
 import { status, createKeyDocument } from "../utils/helpers";
 import { IPagination } from "../types/IFirebase";
 
