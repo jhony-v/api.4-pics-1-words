@@ -9,7 +9,7 @@ export default class UserRoute extends Route<UserController> {
   public initialize() {
     this.router.post("/", this.controller.createUser); // create user
     this.router.post("/exists", this.controller.checkIfExists); // check if the user exists
-    this.router.put("/", this.controller.updateUsername); // update username
+    this.router.put("/", this.controller.updateUser); // update user
     return this.start();
   }
 }

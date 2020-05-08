@@ -58,10 +58,21 @@ class User extends Model {
      * @param iduser id of username
      * @param username new username
      */
-    public updateUsername = ( { iduser , username } : IUser, request : Function) => {
-        return this.db.ref(this.name + "/" + iduser).child('username').set(username,error => {
-            request(status(error));
-        })
+    public updateUser = ( parameters : IUser, request : Function) => {
+        let { iduser , ...props } = parameters;
+
+        const updatePropUser = (property: string , value : string) : Promise<void> => {
+            const propToUpdate = this.db.ref(this.name + "/" + iduser).child(property).set(value,error => {
+                request(status(error));
+            });
+            return propToUpdate;
+        }
+
+        console.log(props);
+        const username = props.username !== undefined ? updatePropUser('username',props.username) : null; 
+        const pass = props.pass !== undefined ? updatePropUser('pass',this.encryptPassword(props.pass)) : null; 
+
+        return Promise.all([username,pass]);
     }
 
     /**

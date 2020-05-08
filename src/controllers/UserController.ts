@@ -24,9 +24,9 @@ export default class UserController extends Controller<User> {
     return exists;
   };
 
-  public updateUsername = (req: Request, res: Response) => {
+  public updateUser = (req: Request, res: Response) => {
     const parameters = req.body;
-    const username = this.model.updateUsername(parameters, (status: IStatus) => {
+    const username = this.model.updateUser(parameters, (status: IStatus) => {
       return res.json(status);
     });
     return username;
