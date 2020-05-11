@@ -15,6 +15,7 @@ export default class Server {
   }
 
   public configuration(): void {
+    this.app.disable('x-powered-by');
     this.app.use(cors());
     this.app.use(compression());
     this.app.use(express.json());
