@@ -38,7 +38,7 @@ class User extends Model {
         let user: IUser;
         let checkUser: IUser;
         let data: { [key: string]: IUser };
-        return this.db.ref(this.name).orderByChild("username").equalTo(<string>username).on('value', value => {
+        return this.db.ref(this.name).orderByChild("username").equalTo(<string>username).once('value', value => {
             data = <{ [key: string]: IUser }>value.toJSON();
             for (let i in data) {
                 checkUser = data[i];

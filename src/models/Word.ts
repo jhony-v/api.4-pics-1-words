@@ -40,7 +40,7 @@ class Word extends Model {
      * @param request callback to get the response
      */
     byId = (idword: string, request: Function) => {
-        return this.db.ref(this.name + "/" + idword).on('value', data => request(data.toJSON()));
+        return this.db.ref(this.name + "/" + idword).once('value', data => request(data.toJSON()));
     }
 
     /**
