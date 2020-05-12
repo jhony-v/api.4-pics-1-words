@@ -8,10 +8,10 @@ export default class WordRoute extends Route<WordController> {
 
   public initialize() {
     this.router.get("/", this.controller.getAllWords); // get all words
-    this.router.get("/:id", this.controller.getWordById); // get only word
     this.router.post("/", this.controller.createNewWord); // create new word
-    this.router.put("/", this.controller.updateWord); // update one word
-    this.router.post("/increment", this.controller.incrementPointsWordDiscover); // increment points of word
+    this.router.get("/:id", this.controller.getWordById); // get only word
+    this.router.put("/:id", this.controller.updateWord); // update one word
+    this.router.post("/id:/points/increment", this.controller.incrementPointsWordDiscover); // increment points of word
     return this.start();
   }
 }
