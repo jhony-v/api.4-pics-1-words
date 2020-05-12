@@ -31,4 +31,12 @@ export default class UserController extends Controller<User> {
     });
     return username;
   };
+
+  public incrementPointsDiscoverByDay = ( req : Request , res : Response) => {
+    const id = req.params.id;
+    const incrementPointByDay = this.model.incrementPointsDiscoverByDay({iduser:id},(status:IStatus) => {
+      return res.json(status);
+    });
+    return incrementPointByDay;
+  }
 }

@@ -68,11 +68,14 @@ class User extends Model {
             return propToUpdate;
         }
 
-        console.log(props);
         const username = props.username !== undefined ? updatePropUser('username',props.username) : null; 
         const pass = props.pass !== undefined ? updatePropUser('pass',this.encryptPassword(props.pass)) : null; 
 
         return Promise.all([username,pass]);
+    }
+
+    public incrementPointsDiscoverByDay = ( parameters : IUser, request: Function) => {
+        return {}
     }
 
     /**
