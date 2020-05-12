@@ -1,8 +1,13 @@
 // types and interfaces of user
+export interface IIndividualPointsDay {
+  points: number;
+  date: string;
+}
 export interface IUser {
   iduser?: string;
   username?: string;
   pass?: string;
+  pointsPerDay?: [IIndividualPointsDay];
 }
 
 // types and interfaces of word
