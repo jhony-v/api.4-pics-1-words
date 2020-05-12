@@ -4,7 +4,7 @@ import UserRoute from "./UserRoute";
 
 const router = Router();
 
-router.use("/word", new WordRoute().initialize());
-router.use("/user", new UserRoute().initialize());
+router.use("/words", new WordRoute().initialize());
+router.use("/users", new UserRoute().initialize());
 
 export default router;
