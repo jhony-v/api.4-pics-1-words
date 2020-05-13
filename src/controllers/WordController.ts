@@ -33,14 +33,15 @@ export default class WordController extends Controller<Word>{
 
   public updateWord = (req: Request, res: Response) => {
     const parameters = req.body;
-    const update = this.model.updateWord(parameters, (status: IStatus) => {
+    const idword = req.params.id;
+    const update = this.model.updateWord({idword,...parameters}, (status: IStatus) => {
       return res.json(status);
     });
     return update;
   };
 
   public incrementPointsWordDiscover = (req: Request, res: Response) => {
-    const { id } = req.body;
+    const id = req.params.id;
     const incrementPoints = this.model.incrementPoints(id, (status: IStatus) => {
       return res.json(status);
     });
