@@ -56,7 +56,8 @@ class User extends Model {
     /**
      * update the username
      * @param iduser id of username
-     * @param username new username
+     * @param parameters data to update the username
+     * @param request callback to get the response
      */
     public updateUser = ( parameters : IUser, request : Function) => {
         let { iduser , ...props } = parameters;
@@ -74,12 +75,17 @@ class User extends Model {
         return Promise.all([username,pass]);
     }
 
+    /**
+     * increment the points personal by day
+     * @param parameters get only id of user
+     * @param request callback to get the response
+     */
     public incrementPointsDiscoverByDay = ( parameters : IUser, request: Function) => {
         const iduser = parameters.iduser;
         const rootRef = this.name + "/" + iduser + "/personalPoints";
         const updatePersonalPoints = (personalPoints : Array<any>) => {
+            let currrentDate = new Date().toLocaleDateString();
             if( personalPoints !== null) {
-                let currrentDate = new Date().toLocaleDateString();
                 personalPoints = personalPoints.map( (current,index) => {
                     if( current.date === currrentDate ) {
                         current.points +=1;

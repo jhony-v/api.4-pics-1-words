@@ -65,7 +65,7 @@ class Word extends Model {
 
     /**
      * Increase word points when discovered correctly
-     * @param idword 
+     * @param idword id of word
      * @param request callback to get the response
      */
     incrementPoints = (idword: string, request: Function) => {

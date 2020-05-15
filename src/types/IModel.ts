@@ -7,6 +7,7 @@ export interface IUser {
   iduser?: string;
   username?: string;
   pass?: string;
+  image?: string;
   personalPoints?: [IIndividualPointsDay];
 }
 
