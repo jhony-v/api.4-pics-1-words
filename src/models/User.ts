@@ -56,11 +56,11 @@ class User extends Model {
     /**
      * update the username
      * @param iduser id of username
-     * @param parameters data to update the username
+     * @param properties data to update the username
      * @param request callback to get the response
      */
-    public updateUser = ( parameters : IUser, request : Function) => {
-        let { iduser , ...props } = parameters;
+    public updateUser = ( properties : IUser, request : Function) => {
+        let { iduser , ...props } = properties;
 
         const updatePropUser = (property: string , value : string) : Promise<void> => {
             const propToUpdate = this.db.ref(this.name + "/" + iduser).child(property).set(value,error => {
@@ -77,11 +77,11 @@ class User extends Model {
 
     /**
      * increment the points personal by day
-     * @param parameters get only id of user
+     * @param properties get only id of user
      * @param request callback to get the response
      */
-    public incrementPointsDiscoverByDay = ( parameters : IUser, request: Function) => {
-        const iduser = parameters.iduser;
+    public incrementPointsDiscoverByDay = ( properties : IUser, request: Function) => {
+        const iduser = properties.iduser;
         const rootRef = this.name + "/" + iduser + "/personalPoints";
         const updatePersonalPoints = (personalPoints : Array<any>) => {
             let currrentDate = new Date().toLocaleDateString();

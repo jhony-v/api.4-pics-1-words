@@ -48,8 +48,8 @@ class Word extends Model {
      * @param parametersWord
      * @param request callback to get the response
      */
-    updateWord = ( parametersWord : IWord , request : Function ) => {
-        const { idword , ...restParams } = parametersWord;
+    updateWord = ( properties : IWord , request : Function ) => {
+        const { idword , ...restParams } = properties;
         const wordSelected = this.db.ref(this.name + "/" + idword);
         const insertParameters : {[key:string] : any} = restParams;
         async function run(){
@@ -68,7 +68,8 @@ class Word extends Model {
      * @param idword id of word
      * @param request callback to get the response
      */
-    incrementPoints = (idword: string, request: Function) => {
+    incrementPoints = ( properties : IWord , request: Function) => {
+        const { idword } = properties;
         const wordSelected = this.db.ref(this.name + "/" + idword);
         const transaction = wordSelected.child("points").transaction(points => points + 1, error => {
             return request(status(error));

@@ -41,8 +41,8 @@ export default class WordController extends Controller<Word>{
   };
 
   public incrementPointsWordDiscover = (req: Request, res: Response) => {
-    const id = req.params.id;
-    const incrementPoints = this.model.incrementPoints(id, (status: IStatus) => {
+    const idword = req.params.id;
+    const incrementPoints = this.model.incrementPoints({idword}, (status: IStatus) => {
       return res.json(status);
     });
     return incrementPoints;
