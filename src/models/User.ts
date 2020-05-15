@@ -75,7 +75,22 @@ class User extends Model {
     }
 
     public incrementPointsDiscoverByDay = ( parameters : IUser, request: Function) => {
-        return {}
+        const iduser = parameters.iduser;
+        const rootRef = this.name + "/" + iduser + "/personalPoints";
+        const updatePersonalPoints = (personalPoints : Array<any>) => {
+            if( personalPoints !== null) {
+                let currrentDate = new Date().toLocaleDateString();
+                personalPoints = personalPoints.map( (current,index) => {
+                    if( current.date === currrentDate ) {
+                        current.points +=1;
+                    }
+                    return current;
+                })
+            }
+            return personalPoints;
+        }
+        const transaction = this.db.ref(rootRef).transaction(updatePersonalPoints,error => request(status(error)));
+        return transaction;
     }
 
     /**

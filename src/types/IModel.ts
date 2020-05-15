@@ -7,7 +7,7 @@ export interface IUser {
   iduser?: string;
   username?: string;
   pass?: string;
-  pointsPerDay?: [IIndividualPointsDay];
+  personalPoints?: [IIndividualPointsDay];
 }
 
 // types and interfaces of word
