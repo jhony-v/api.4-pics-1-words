@@ -1,8 +1,8 @@
-import Model from "./Model";
+import Model from "../Model";
 import CryptoJs from "crypto-js";
-import { IStatus } from "../types/IStatus";
-import { IUser } from "../types/IModel";
-import { status, createKeyDocument } from "../utils/helpers";
+import { IStatus } from "../../types/IStatus";
+import { status, createKeyDocument } from "../../utils/helpers";
+import { IUser } from "./UserInterface";
 
 class User extends Model {
     constructor() {

@@ -1,7 +1,7 @@
 import Controller from "./Controller"
-import User from "../models/User";
 import { IStatus } from "../types/IStatus";
 import { Request, Response } from "express";
+import { User } from "../models";
 
 export default class UserController extends Controller<User> { 
   constructor() {

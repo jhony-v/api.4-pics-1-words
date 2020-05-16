@@ -1,7 +1,7 @@
-import Model from "./Model";
-import { IWord } from "../types/IModel";
-import { status, createKeyDocument } from "../utils/helpers";
-import { IPagination } from "../types/IFirebase";
+import Model from "../Model";
+import { status, createKeyDocument } from "../../utils/helpers";
+import { IWord } from "./WordInterface";
+import { IPagination } from "../../config/firebase";
 
 class Word extends Model {
     constructor() {

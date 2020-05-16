@@ -1,8 +1,8 @@
 import Controller from "./Controller"
-import Word from "../models/Word";
 import { IStatus } from "../types/IStatus";
 import { IWord } from "../types/IModel";
 import { Request, Response } from "express";
+import { Word } from "../models";
 
 export default class WordController extends Controller<Word>{
   constructor(){
