@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { KEY_JWT } from "../config/env";
+import env from "../config/env";
 
 // authorization to access the service
 const auth = (req: Request, res: Response, next: NextFunction) => {
@@ -11,7 +11,7 @@ const auth = (req: Request, res: Response, next: NextFunction) => {
     return res.status(401).send("Access denied. No Token provider");
   }
   try {
-    let decode = jwt.verify(<string>authorization, KEY_JWT);
+    let decode = jwt.verify(<string>authorization, <string>env.KEY_JWT);
     if (decode) {
       req.body = req.body;
       next();

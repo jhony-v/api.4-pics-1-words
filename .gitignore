@@ -1,5 +1,4 @@
 node_modules
-/src/config/env.ts
 /dist
 /src/key.json
 tokens.json
