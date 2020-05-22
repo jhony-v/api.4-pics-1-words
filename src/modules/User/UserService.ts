@@ -2,6 +2,7 @@ import UserModel, { PropsUser } from "./UserModel";
 import FirebaseService from "../../lib/FirebaseService";
 
 type PromiseUser = Promise<PropsUser>;
+type userJSON = { [key : string] : PropsUser };
 
 export default class UserService extends FirebaseService {
   private user: UserModel;
@@ -20,7 +21,6 @@ export default class UserService extends FirebaseService {
   }
 
   checkIfUserExists(): PromiseUser {
-    type userJSON = { [key : string] : PropsUser };
     return new Promise((resolve) => {
         this.ref().orderByChild("username").equalTo(this.user.username).once('value', data => {
             let userData = this.user.existsUser(<userJSON>data.toJSON());
