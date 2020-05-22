@@ -10,5 +10,24 @@ export default class WordService extends FirebaseService {
         super(word.toString());
         this.word = word;
     }
+    
+    create() {
 
+    }
+    
+    read() {
+
+    }
+
+    searchWordById() {
+
+    }
+
+    updateWord() {
+
+    }
+
+    incrementPoints() {
+
+    }
 }
