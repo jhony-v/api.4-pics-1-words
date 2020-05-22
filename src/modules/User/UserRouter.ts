@@ -1,5 +1,5 @@
 import UserController from "../../modules/controllers/UserController";
-import Route from "../../api/routes/Route";
+import Route from "../../lib/RouteBase";
 
 export default class UserRoute extends Route<UserController> {
   constructor() {
