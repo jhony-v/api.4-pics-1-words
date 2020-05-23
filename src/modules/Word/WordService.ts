@@ -35,9 +35,20 @@ export default class WordService extends FirebaseService {
     });
   }
 
-  searchWordById() {}
-
-  updateWord() {}
+  updateWord() {
+    const { idword , ...restProps } = this.word.props;
+    const propsToUpdate : {[key:string] : any} = restProps;
+    const ref = this.ref;
+    
+    return new Promise((resolve,reject) => {
+      async function run(){
+        for ( let key in propsToUpdate ) {
+          await ref(idword || '').child(key).set(propsToUpdate[key]);
+        }
+      }
+      resolve(run());
+    })
+  }
 
   incrementPoints() {
     return new Promise((resolve, reject) => {
