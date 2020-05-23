@@ -23,4 +23,12 @@ export default class WordModel {
   constructor() {
     this.name = "word";
   }
+
+  dataCreate(): PropsWord {
+    return this.props;
+  }
+
+  incrementPoints(points: number) {
+    return points + 1;
+  }
 }
