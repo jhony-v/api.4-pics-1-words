@@ -12,6 +12,9 @@ export default class UserService extends FirebaseService {
     this.user = user;
   }
 
+  /**
+   * Create new users in the application 
+   */
   create(): PromiseUser {
     return new Promise((resolve) => {
       this.ref(this.createKey()).set(this.user.createUserData(), (error) => {
@@ -19,7 +22,10 @@ export default class UserService extends FirebaseService {
       });
     });
   }
-
+  
+  /**
+   * Check that the user is registered in the application
+   */
   checkIfUserExists(): PromiseUser {
     return new Promise((resolve) => {
         this.ref().orderByChild("username").equalTo(this.user.username).once('value', data => {
@@ -29,12 +35,18 @@ export default class UserService extends FirebaseService {
     });
   }
 
+  /**
+   * Update the data of the user
+   */
   updateUser(): PromiseUser {
     return new Promise((resolve) => {
         resolve({});
     });
   }
 
+  /**
+   * Increment the points personal by day
+   */
   incrementPointsDiscoverByDay(): PromiseUser {
     return new Promise((resolve) => {
         this.ref(this.user.iduser,'personalPoints').transaction(this.user.increasePoints,error=>{
