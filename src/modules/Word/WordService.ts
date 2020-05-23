@@ -21,13 +21,17 @@ export default class WordService extends FirebaseService {
 
   getAllWord() {
     return new Promise((resolve, reject) => {
-      this.ref()
-        .orderByChild("letters")
-        .startAt(0)
-        .limitToFirst(10)
-        .once("value", (data) => {
+      this.ref().orderByChild("letters").startAt(0).limitToFirst(10).once("value", (data) => {
           resolve(data.toJSON());
         });
+    });
+  }
+
+  getWordById() {
+    return new Promise((resolve,reject) => {
+      this.ref(this.word.idword).once('value',data => {
+        resolve(data.toJSON());
+      });
     });
   }
 
@@ -37,9 +41,7 @@ export default class WordService extends FirebaseService {
 
   incrementPoints() {
     return new Promise((resolve, reject) => {
-      this.ref(this.word.idword)
-        .child("points")
-        .transaction(this.word.incrementPoints, (error) => {
+      this.ref(this.word.idword).child("points").transaction(this.word.incrementPoints, (error) => {
           resolve({});
         });
     });
