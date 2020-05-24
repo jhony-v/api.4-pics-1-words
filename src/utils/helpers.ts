@@ -1,10 +1,8 @@
-import { IStatus } from "../types/IStatus";
-
 /**
  * get the status
  * @param error any kind
  */
-export const status = (error: any): IStatus => {
+export const status = (error: any) => {
   return { status: error ? false : true };
 };
 

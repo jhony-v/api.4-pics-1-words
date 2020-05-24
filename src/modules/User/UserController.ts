@@ -1,43 +1,40 @@
-import Controller from "../../lib/Controller"
 import { Request, Response } from "express";
-import { User } from "../models";
-import { IStatus } from "../../config/firebase";
+import UserService from "./UserService";
+import UserModel from "./UserModel";
 
-export default class UserController extends Controller<User> { 
-  constructor() {
-    super(new User());
+export default class UserController {
+  async createUser(req: Request, res: Response) {
+    const user = new UserModel();
+    user.username = req.body.username;
+    user.pass = req.body.pass;
+    const service = new UserService(user);
+    const response = await service.create();
+    return res.json(response);
   }
 
-  public createUser = (req: Request, res: Response) => {
-    const parameters = req.body;
-    const create = this.model.create(parameters, (status: IStatus) => {
-      return res.json(status);
-    });
-    return create;
-  };
+  async checkIfExists(req: Request, res: Response) {
+    const user = new UserModel();
+    user.username = req.body.username;
+    user.pass = req.body.pass;
+    const service = new UserService(user);
+    const response = await service.checkIfUserExists();
+    return res.json(response);
+  }
 
-  public checkIfExists = (req: Request, res: Response) => {
-    const parameters = req.body;
-    const exists = this.model.checkIfExistUser(parameters, (status: IStatus) => {
-      return res.json(status);
-    });
-    return exists;
-  };
+  async updateUser(req: Request, res: Response) {
+    const user = new UserModel();
+    user.iduser = req.params.id;
+    user.props = req.body;
+    const service = new UserService(user);
+    const response = await service.updateUser();
+    return res.json(response);
+  }
 
-  public updateUser = (req: Request, res: Response) => {
-    const parameters = req.body;
-    const iduser = req.params.id;
-    const username = this.model.updateUser({iduser,...parameters}, (status: IStatus) => {
-      return res.json(status);
-    });
-    return username;
-  };
-
-  public incrementPointsDiscoverByDay = ( req : Request , res : Response) => {
-    const id = req.params.id;
-    const incrementPointByDay = this.model.incrementPointsDiscoverByDay({iduser:id},(status:IStatus) => {
-      return res.json(status);
-    });
-    return incrementPointByDay;
+  async incrementPointsDiscoverByDay(req: Request, res: Response) {
+    const user = new UserModel();
+    user.iduser = req.params.id;
+    const service = new UserService(user);
+    const response = await service.incrementPointsDiscoverByDay();
+    return res.json(response);
   }
 }
