@@ -26,7 +26,8 @@ export default class WordModel extends ModelBase {
   }
 
   dataCreate(): PropsWord {
-    return this.props;
+    const { idword , ...restProps } = this.props;
+    return restProps;
   }
 
   incrementPoints(points: number) {

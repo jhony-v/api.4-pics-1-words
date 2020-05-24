@@ -37,7 +37,7 @@ export default class UserModel extends ModelBase{
   updateUserData() : PropsUser {
     const keys = Object.keys(this.props);
     const values = Object.values(this.props);
-    return {};
+    return { };
   }
 
   increasePoints(personalPoints: PropsIndividualPoints[]) : PropsIndividualPoints[] {
