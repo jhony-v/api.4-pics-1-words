@@ -1,7 +1,7 @@
-import UserController from "../../modules/controllers/UserController";
-import Route from "../../lib/RouteBase";
+import RouteBase from "../../lib/RouteBase";
+import UserController from "./UserController";
 
-export default class UserRoute extends Route<UserController> {
+export default class UserRouter extends RouteBase<UserController> {
   constructor() {
     super(new UserController());
   }

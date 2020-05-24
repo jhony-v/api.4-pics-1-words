@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-export default abstract class Route<T_Controller> {
+export default abstract class RouteBase<T_Controller> {
   protected router: Router;
   protected controller: T_Controller;
 
@@ -13,4 +13,3 @@ export default abstract class Route<T_Controller> {
     return this.router;
   }
 }
-

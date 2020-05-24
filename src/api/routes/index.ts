@@ -1,14 +1,10 @@
 import { Router, Request, Response } from "express";
-import WordRoute from "./WordRoute";
-import UserRoute from "./UserRoute";
+import WordRouter from "../../modules/Word/WordRouter";
+import UserRouter from "../../modules/User/UserRouter";
 
 const router = Router();
 
-router.use("/words", new WordRoute().initialize());
-router.use("/users", new UserRoute().initialize());
-
-router.get("*", (req: Request, res: Response) => {
-    res.status(404).json("jhony")
-});
+router.use("/words", new WordRouter().initialize());
+router.use("/users", new UserRouter().initialize());
 
 export default router;

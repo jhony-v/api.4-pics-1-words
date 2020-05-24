@@ -1,5 +1,5 @@
 export default abstract class ModelBase {
-  public name: string;
+  protected name: string;
   constructor(modelName: string) {
     this.name = modelName;
   }
