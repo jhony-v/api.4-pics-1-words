@@ -1,4 +1,5 @@
 import CryptoJs from "crypto-js";
+import ModelBase from "../../lib/ModelBase";
 
 export interface PropsIndividualPoints {
   points: number;
@@ -13,7 +14,7 @@ export interface PropsUser {
   personalPoints?: [PropsIndividualPoints];
 }
 
-export default class UserModel {
+export default class UserModel extends ModelBase{
   public name: string = '';
   public iduser : string = '';
   public username : string = '';
@@ -22,7 +23,7 @@ export default class UserModel {
   public props : PropsUser = {};
 
   constructor() {
-    this.name = "user";
+    super('user');
   }
   
 

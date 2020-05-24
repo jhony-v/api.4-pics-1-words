@@ -1,3 +1,5 @@
+import ModelBase from "../../lib/ModelBase";
+
 export interface PropsWord {
   idword?: string;
   iduser?: string;
@@ -10,8 +12,7 @@ export interface PropsWord {
 export type TImages = { [key: number]: string };
 export type TWord = { [key: string]: PropsWord };
 
-export default class WordModel {
-  public name: string = "";
+export default class WordModel extends ModelBase {
   public idword: string = "";
   public iduser: string = "";
   public letters: string = "";
@@ -21,7 +22,7 @@ export default class WordModel {
   public props: PropsWord = {};
 
   constructor() {
-    this.name = "word";
+    super("word");
   }
 
   dataCreate(): PropsWord {
