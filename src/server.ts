@@ -1,8 +1,8 @@
 import express, { Express } from "express";
 import cors from "cors";
 import compression from "compression";
-import auth from "../api/middlewares/auth";
-import routes from "../api/routes";
+import auth from "./api/middlewares/auth";
+import routes from "./api/routes";
 
 export default class Server {
   private app: Express;
