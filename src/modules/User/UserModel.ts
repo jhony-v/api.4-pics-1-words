@@ -15,7 +15,6 @@ export interface PropsUser {
 }
 
 export default class UserModel extends ModelBase{
-  public name: string = '';
   public iduser : string = '';
   public username : string = '';
   public pass : string = '';
@@ -37,7 +36,7 @@ export default class UserModel extends ModelBase{
   updateUserData() : PropsUser {
     const keys = Object.keys(this.props);
     const values = Object.values(this.props);
-    return {};
+    return { };
   }
 
   increasePoints(personalPoints: PropsIndividualPoints[]) : PropsIndividualPoints[] {
@@ -72,10 +71,6 @@ export default class UserModel extends ModelBase{
 
   encryptPassword(password: string = ""): string {
     return CryptoJs.SHA256(password).toString();
-  }
-
-  toString(): string {
-    return this.name;
   }
 
 }

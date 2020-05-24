@@ -1,6 +1,6 @@
 import firebase from "firebase-admin";
-import app from "../config/firebase";
 import { joinPath } from "../utils/helpers";
+import FirebaseBase from "./FirebaseBase";
 export type FireDataBase = firebase.database.Database;
 
 type Reference = firebase.database.Reference;
@@ -10,7 +10,7 @@ export default class FirebaseService {
   protected db: FireDataBase;
 
   constructor(name: string) {
-    this.db = app.database();
+    this.db = new FirebaseBase().database();
     this.name = name;
   }
 

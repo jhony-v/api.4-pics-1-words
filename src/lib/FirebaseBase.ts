@@ -18,7 +18,11 @@ export default class FirebaseBase {
     };
   }
 
-  app() : firebase.app.App {
+  app(): firebase.app.App {
     return firebase.initializeApp(this.configurationApp());
+  }
+
+  database(): FireDataBase {
+    return this.app().database();
   }
 }
