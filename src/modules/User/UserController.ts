@@ -13,12 +13,12 @@ export default class UserController {
   }
 
   async checkIfExists(req: Request, res: Response) {
-    const user = new UserModel();
-    user.username = req.body.username;
-    user.pass = req.body.pass;
-    const service = new UserService(user);
-    const response = await service.checkIfUserExists();
-    return res.json(response);
+      const user = new UserModel();
+      user.username = req.body.username;
+      user.pass = req.body.pass;
+      const service = new UserService(user);
+      const response = await service.checkIfUserExists();
+      return res.json(response);
   }
 
   async updateUser(req: Request, res: Response) {

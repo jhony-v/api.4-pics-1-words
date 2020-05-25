@@ -40,6 +40,7 @@ export default class UserService extends FirebaseService {
    */
   updateUser(): PromiseUser {
     return new Promise((resolve) => {
+        this.ref(this.user.iduser).update(this.user.updateUserData());
         resolve({});
     });
   }

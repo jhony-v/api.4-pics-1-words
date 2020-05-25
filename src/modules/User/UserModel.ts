@@ -34,9 +34,11 @@ export default class UserModel extends ModelBase{
   }
 
   updateUserData() : PropsUser {
-    const keys = Object.keys(this.props);
-    const values = Object.values(this.props);
-    return { };
+    let props : PropsUser = this.props;
+    if (props.pass) {
+      props.pass = this.encryptPassword(props.pass)
+    }
+    return props;
   }
 
   increasePoints(personalPoints: PropsIndividualPoints[]) : PropsIndividualPoints[] {

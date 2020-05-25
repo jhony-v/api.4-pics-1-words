@@ -4,25 +4,11 @@ import env from "../config/env";
 
 export type FireDataBase = firebase.database.Database;
 
-export interface IStatus {
-  status: boolean;
-}
+export const appConfig: firebase.AppOptions = {
+  credential: firebase.credential.cert(<any>serviceAccount),
+  databaseURL: env.FIREBASE_URL,
+};
 
-export default class FirebaseBase {
-  constructor() {}
+export const app = firebase.initializeApp(appConfig);
 
-  configurationApp(): firebase.AppOptions {
-    return {
-      credential: firebase.credential.cert(<any>serviceAccount),
-      databaseURL: env.FIREBASE_URL,
-    };
-  }
-
-  app(): firebase.app.App {
-    return firebase.initializeApp(this.configurationApp());
-  }
-
-  database(): FireDataBase {
-    return this.app().database();
-  }
-}
+export const database = app.database();
