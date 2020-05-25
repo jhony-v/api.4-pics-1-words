@@ -26,17 +26,25 @@ export default class WordModel extends ModelBase {
   }
 
   dataCreate(): PropsWord {
-    const { idword , ...restProps } = this.props;
+    const { idword, ...restProps } = this.props;
     return restProps;
+  }
+
+  updateWordData(): PropsWord {
+    const { letters, images } = this.props;
+    return {
+      ...(letters && { letters }),
+      ...(images && { images }),
+    };
   }
 
   incrementPoints(points: number) {
     return points + 1;
   }
 
-  getPointsUpdated(newPoint : number) : PropsWord {
-      return {
-        points : newPoint
-      }
-  } 
+  getPointsUpdated(newPoint: number): PropsWord {
+    return {
+      points: newPoint,
+    };
+  }
 }

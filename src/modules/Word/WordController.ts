@@ -25,7 +25,13 @@ export default class WordController {
 
   async updateWord(req: Request, res: Response) {
     const parameters = req.body;
-    const idword = req.params.id;
+    const id = req.params.id;
+    const word = new WordModel();
+    word.idword = id;
+    word.props = parameters;
+    const service = new WordService(word);
+    const response = await service.updateWord();
+    return res.json(response);
   }
 
   async incrementPointsWordDiscover(req: Request, res: Response) {
