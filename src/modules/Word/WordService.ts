@@ -10,6 +10,7 @@ export default class WordService extends FirebaseService {
     super(word.toString());
     this.word = word;
   }
+  
   /**
    * Create new word with basic and default parameters
    */
@@ -26,7 +27,7 @@ export default class WordService extends FirebaseService {
    */
   getAllWord() {
     return new Promise((resolve, reject) => {
-      this.ref().orderByChild("letters").startAt(0).limitToFirst(10).once("value", (data) => {
+      this.ref().orderByChild("letters").startAt(0).limitToFirst(10).once('value', (data) => {
           resolve(data.toJSON());
         });
     });

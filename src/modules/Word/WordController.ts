@@ -1,50 +1,39 @@
-import Controller from "../../lib/Controller"
 import { Request, Response } from "express";
-import { Word } from "../models";
-import { IWord } from "../models/Word/WordInterface";
-import { IStatus } from "../../config/firebase";
+import WordModel from "./WordModel";
+import WordService from "./WordService";
 
-export default class WordController extends Controller<Word>{
-  constructor(){
-    super(new Word());
+export default class WordController {
+  async getAllWords(req: Request, res: Response) {
+    const word = new WordModel();
+    const service = new WordService(word);
+    const response = await service.getAllWord();
+    return res.json(response);
   }
 
-  public getAllWords = async (req: Request, res: Response) => {
-    const parameters = req.query;
-    const all = await this.model.read(parameters, (data: IWord) => data);
-    return res.json(all);
-  };
+  async getWordById(req: Request, res: Response) {
+    const id = req.params.id;
+    const word = new WordModel();
+    word.idword = id;
+    const service = new WordService(word);
+    const response = await service.getWordById();
+    return res.json(response);
+  }
 
-  public getWordById = (req: Request, res: Response) => {
-    const { id } = req.params;
-    const byId = this.model.byId(id, (data: IWord) => {
-      return res.json(data);
-    });
-    return byId;
-  };
-
-  public createNewWord = (req: Request, res: Response) => {
+  async createNewWord(req: Request, res: Response) {
     const parameters = req.body;
-    const create = this.model.create(parameters, (status: IStatus) => {
-      return res.json(status);
-    });
-    return create;
-  };
+  }
 
-  public updateWord = (req: Request, res: Response) => {
+  async updateWord(req: Request, res: Response) {
     const parameters = req.body;
     const idword = req.params.id;
-    const update = this.model.updateWord({idword,...parameters}, (status: IStatus) => {
-      return res.json(status);
-    });
-    return update;
-  };
+  }
 
-  public incrementPointsWordDiscover = (req: Request, res: Response) => {
-    const idword = req.params.id;
-    const incrementPoints = this.model.incrementPoints({idword}, (status: IStatus) => {
-      return res.json(status);
-    });
-    return incrementPoints;
-  };
+  async incrementPointsWordDiscover(req: Request, res: Response) {
+    const id = req.params.id;
+    const word = new WordModel();
+    word.idword = id;
+    const service = new WordService(word);
+    const response = await service.incrementPoints();
+    return res.json(response);
+  }
 }
