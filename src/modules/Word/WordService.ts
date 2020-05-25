@@ -14,7 +14,7 @@ export default class WordService extends FirebaseService {
   /**
    * Create new word with basic and default parameters
    */
-  create(): PromiseWord {
+  createWord(): PromiseWord {
     return new Promise((resolve, reject) => {
       this.ref(this.createKey()).set(this.word.dataCreate(), (error) => {
         resolve(this.word.dataCreate());

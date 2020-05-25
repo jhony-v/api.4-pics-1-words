@@ -21,6 +21,11 @@ export default class WordController {
 
   async createNewWord(req: Request, res: Response) {
     const parameters = req.body;
+    const word = new WordModel();
+    word.props = parameters;
+    const service = new WordService(word);
+    const response = await service.createWord();
+    return res.json(response);
   }
 
   async updateWord(req: Request, res: Response) {
