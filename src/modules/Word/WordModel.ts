@@ -33,4 +33,10 @@ export default class WordModel extends ModelBase {
   incrementPoints(points: number) {
     return points + 1;
   }
+
+  getPointsUpdated(newPoint : number) : PropsWord {
+      return {
+        points : newPoint
+      }
+  } 
 }

@@ -67,9 +67,15 @@ export default class WordService extends FirebaseService {
    */
   incrementPoints() {
     return new Promise((resolve, reject) => {
-      this.ref(this.word.idword).child("points").transaction(this.word.incrementPoints, (error) => {
-          resolve({});
-        });
+      this.ref(this.word.idword).child("points").transaction(this.word.incrementPoints, (error,_,snapshot) => {
+        if (error) {
+          reject(error);
+        }
+        else {
+          resolve( this.word.getPointsUpdated(snapshot?.val()) );
+        }
+      });
     });
   }
+
 }
