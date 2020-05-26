@@ -1,5 +1,5 @@
 import WordController from "./WordController";
-import Route from "../../lib/RouteBase";
+import Route from "../../lib/base/RouteBase";
 
 export default class WordRouter extends Route<WordController> {
   constructor() {

@@ -1,5 +1,5 @@
 import CryptoJs from "crypto-js";
-import ModelBase from "../../lib/ModelBase";
+import ModelBase from "../../lib/base/ModelBase";
 
 export interface PropsIndividualPoints {
   points: number;

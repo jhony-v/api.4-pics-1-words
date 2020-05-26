@@ -1,4 +1,4 @@
-import FirebaseService from "../../lib/FirebaseService";
+import FirebaseService from "../../lib/base/FirebaseService";
 import WordModel, { PropsWord } from "./WordModel";
 
 type PromiseWord = Promise<PropsWord>;
@@ -9,15 +9,19 @@ export default class WordService extends FirebaseService {
   constructor(word: WordModel) {
     super(word.toString());
     this.word = word;
-  }
-  
+  }  
   /**
    * Create new word with basic and default parameters
    */
   createWord(): PromiseWord {
     return new Promise((resolve, reject) => {
       this.ref(this.createKey()).set(this.word.dataCreate(), (error) => {
-        resolve(this.word.dataCreate());
+        if (error) {
+          resolve(this.word.dataCreate());
+        } 
+        else {
+          reject({});
+        } 
       });
     });
   }
@@ -27,8 +31,12 @@ export default class WordService extends FirebaseService {
    */
   getAllWord() {
     return new Promise((resolve, reject) => {
-      this.ref().orderByChild("letters").startAt(0).limitToFirst(10).once('value', (data) => {
+      this.ref().orderByChild("letters").startAt(0).limitToFirst(10).once('value', 
+        data => {
           resolve(data.toJSON());
+        },
+        error => {
+          reject(error);
         });
     });
   }
@@ -38,9 +46,13 @@ export default class WordService extends FirebaseService {
     */
   getWordById() {
     return new Promise((resolve,reject) => {
-      this.ref(this.word.idword).once('value',data => {
-        resolve(data.toJSON());
-      });
+      this.ref(this.word.idword).once('value',
+        data => {
+          resolve(data.toJSON());
+        },
+        error => {
+          reject(error);
+        });
     });
   }
 
@@ -49,8 +61,13 @@ export default class WordService extends FirebaseService {
    */
   updateWord() {
     return new Promise((resolve,reject) => {
-      this.ref(this.word.idword).update(this.word.updateWordData(),error => {
-        resolve({});
+      this.ref(this.word.idword).update(this.word.updateWordData(), error => {
+        if (error) {
+          resolve({});
+        } 
+        else {
+          reject({});
+        }
       });
     })
   }
@@ -66,7 +83,7 @@ export default class WordService extends FirebaseService {
         }
         else {
           resolve( this.word.getPointsUpdated(snapshot?.val()) );
-        }
+        } 
       });
     });
   }

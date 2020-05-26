@@ -1,6 +1,6 @@
 import firebase from "firebase-admin";
-import serviceAccount from "../key.json";
-import env from "../config/env";
+import serviceAccount from "../../key.json";
+import env from "../../config/env";
 
 export type FireDataBase = firebase.database.Database;
 

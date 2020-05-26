@@ -1,5 +1,5 @@
 import UserModel, { PropsUser } from "./UserModel";
-import FirebaseService from "../../lib/FirebaseService";
+import FirebaseService from "../../lib/base/FirebaseService";
 
 type PromiseUser = Promise<PropsUser>;
 type userJSON = { [key : string] : PropsUser };
@@ -16,7 +16,7 @@ export default class UserService extends FirebaseService {
    * Create new users in the application 
    */
   create(): PromiseUser {
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
       this.ref(this.createKey()).set(this.user.createUserData(), (error) => {
         resolve(this.user.createUserData());
       });
@@ -27,7 +27,7 @@ export default class UserService extends FirebaseService {
    * Check that the user is registered in the application
    */
   checkIfUserExists(): PromiseUser {
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
         this.ref().orderByChild("username").equalTo(this.user.username).once('value', data => {
             let userData = this.user.existsUser(<userJSON>data.toJSON());
             resolve(userData);
@@ -39,7 +39,7 @@ export default class UserService extends FirebaseService {
    * Update the data of the user
    */
   updateUser(): PromiseUser {
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
         this.ref(this.user.iduser).update(this.user.updateUserData());
         resolve({});
     });
@@ -49,7 +49,7 @@ export default class UserService extends FirebaseService {
    * Increment the points personal by day
    */
   incrementPointsDiscoverByDay(): PromiseUser {
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
         this.ref(this.user.iduser,'personalPoints').transaction(this.user.increasePoints,error=>{
             resolve({});
         });
