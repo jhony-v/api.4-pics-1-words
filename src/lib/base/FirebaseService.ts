@@ -1,9 +1,13 @@
 import firebase from "firebase-admin";
 import { joinPath } from "../utils/helpers";
 import { database } from "./FirebaseBase";
-export type FireDataBase = firebase.database.Database;
 
-type Reference = firebase.database.Reference;
+export interface Status {
+  status: boolean;
+}
+
+export type FireDataBase = firebase.database.Database;
+export type Reference = firebase.database.Reference;
 
 export default class FirebaseService {
   protected name: string;
@@ -21,5 +25,11 @@ export default class FirebaseService {
 
   createKey(): string {
     return this.name + this.ref(this.name).push().key;
+  }
+
+  status(status: boolean): Status {
+    return {
+      status,
+    };
   }
 }

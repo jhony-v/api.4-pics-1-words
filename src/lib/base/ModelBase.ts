@@ -7,4 +7,5 @@ export default abstract class ModelBase {
   toString() : string {
     return this.name;
   }
+
 }
