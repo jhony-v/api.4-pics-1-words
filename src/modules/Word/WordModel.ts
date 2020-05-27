@@ -22,7 +22,7 @@ export default class WordModel extends ModelBase {
   public props: PropsWord = {};
 
   constructor() {
-    super("word");
+    super('word');
   }
 
   dataCreate(): PropsWord {

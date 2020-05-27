@@ -4,6 +4,7 @@ import { database } from "./FirebaseBase";
 
 export interface Status {
   status: boolean;
+  message?: string;
 }
 
 export type FireDataBase = firebase.database.Database;
@@ -27,9 +28,10 @@ export default class FirebaseService {
     return this.name + this.ref(this.name).push().key;
   }
 
-  status(status: boolean): Status {
+  status(status: boolean, message: string = ""): Status {
     return {
       status,
+      ...(message !== "" && { message }),
     };
   }
 }

@@ -19,10 +19,13 @@ export default class UserService extends FirebaseService {
     return new Promise((resolve,reject) => {
       this.ref(this.createKey()).set(this.user.createUserData(), (error) => {
         if (error) {
-          resolve(this.user.createUserData());
+          resolve({
+            ...this.status(true),
+            ...this.user.createUserData(),
+          });
         }
         else {
-          reject({});
+          reject(this.status(false));
         }
       });
     });
@@ -36,10 +39,13 @@ export default class UserService extends FirebaseService {
         this.ref().orderByChild("username").equalTo(this.user.username).once('value', 
         data => {
             let userData = this.user.existsUser(<userJSON>data.toJSON());
-            resolve(userData);
+            resolve({
+              ...this.status(true),
+              ...userData,
+            });
         },
         error => {
-          reject(error);
+          reject(this.status(false,error.message));
         });
     });
   }
@@ -51,10 +57,13 @@ export default class UserService extends FirebaseService {
     return new Promise((resolve,reject) => {
         this.ref(this.user.iduser).update(this.user.updateUserData(), error => {
           if (error) {
-            resolve({});
+            resolve({
+              ...this.status(true),
+              ...this.user.updateUserData()
+            });
           }
           else {
-            reject({});
+            reject(this.status(false));
           }
         });
     });
@@ -67,10 +76,13 @@ export default class UserService extends FirebaseService {
     return new Promise((resolve,reject) => {
         this.ref(this.user.iduser,'personalPoints').transaction(this.user.increasePoints, (error,_,snaphsot) => {
           if (error) {
-            reject(error);
+            reject(this.status(false,error.message));
           } 
           else {
-            resolve(snaphsot?.val());
+            resolve({
+              ...this.status(true),
+              ...snaphsot?.val()
+            });
           } 
         });
     });

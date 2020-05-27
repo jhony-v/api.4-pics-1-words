@@ -17,10 +17,13 @@ export default class WordService extends FirebaseService {
     return new Promise((resolve, reject) => {
       this.ref(this.createKey()).set(this.word.dataCreate(), (error) => {
         if (error) {
-          resolve(this.word.dataCreate());
+          resolve({
+            ...this.status(true),
+            ...this.word.dataCreate(),
+          });
         } 
         else {
-          reject({});
+          reject(this.status(false));
         } 
       });
     });
@@ -33,10 +36,13 @@ export default class WordService extends FirebaseService {
     return new Promise((resolve, reject) => {
       this.ref().orderByChild("letters").startAt(0).limitToFirst(10).once('value', 
         data => {
-          resolve(data.toJSON());
+          resolve({
+            ...this.status(true),
+            ...data.toJSON(),
+          });
         },
         error => {
-          reject(error);
+          reject(this.status(false,error.message));
         });
     });
   }
@@ -48,10 +54,13 @@ export default class WordService extends FirebaseService {
     return new Promise((resolve,reject) => {
       this.ref(this.word.idword).once('value',
         data => {
-          resolve(data.toJSON());
+          resolve({
+            ...this.status(true),
+            ...data.toJSON(),
+          });
         },
         error => {
-          reject(error);
+          reject(this.status(false,error.message));
         });
     });
   }
@@ -63,10 +72,10 @@ export default class WordService extends FirebaseService {
     return new Promise((resolve,reject) => {
       this.ref(this.word.idword).update(this.word.updateWordData(), error => {
         if (error) {
-          resolve({});
+          resolve(this.status(false,error.message));
         } 
         else {
-          reject({});
+          reject(this.status(true));
         }
       });
     })
@@ -79,10 +88,13 @@ export default class WordService extends FirebaseService {
     return new Promise((resolve, reject) => {
       this.ref(this.word.idword).child("points").transaction(this.word.incrementPoints, (error,_,snapshot) => {
         if (error) {
-          reject(error);
+          reject(this.status(false,error.message));
         }
         else {
-          resolve( this.word.getPointsUpdated(snapshot?.val()) );
+          resolve({
+            ...this.status(true),
+            ...this.word.getPointsUpdated(snapshot?.val()),
+          });
         } 
       });
     });
