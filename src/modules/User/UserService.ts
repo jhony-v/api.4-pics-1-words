@@ -18,7 +18,12 @@ export default class UserService extends FirebaseService {
   create(): PromiseUser {
     return new Promise((resolve,reject) => {
       this.ref(this.createKey()).set(this.user.createUserData(), (error) => {
-        resolve(this.user.createUserData());
+        if (error) {
+          resolve(this.user.createUserData());
+        }
+        else {
+          reject({});
+        }
       });
     });
   }
@@ -28,9 +33,13 @@ export default class UserService extends FirebaseService {
    */
   checkIfUserExists(): PromiseUser {
     return new Promise((resolve,reject) => {
-        this.ref().orderByChild("username").equalTo(this.user.username).once('value', data => {
+        this.ref().orderByChild("username").equalTo(this.user.username).once('value', 
+        data => {
             let userData = this.user.existsUser(<userJSON>data.toJSON());
             resolve(userData);
+        },
+        error => {
+          reject(error);
         });
     });
   }
@@ -40,8 +49,14 @@ export default class UserService extends FirebaseService {
    */
   updateUser(): PromiseUser {
     return new Promise((resolve,reject) => {
-        this.ref(this.user.iduser).update(this.user.updateUserData());
-        resolve({});
+        this.ref(this.user.iduser).update(this.user.updateUserData(), error => {
+          if (error) {
+            resolve({});
+          }
+          else {
+            reject({});
+          }
+        });
     });
   }
 
@@ -50,8 +65,13 @@ export default class UserService extends FirebaseService {
    */
   incrementPointsDiscoverByDay(): PromiseUser {
     return new Promise((resolve,reject) => {
-        this.ref(this.user.iduser,'personalPoints').transaction(this.user.increasePoints,error=>{
-            resolve({});
+        this.ref(this.user.iduser,'personalPoints').transaction(this.user.increasePoints, (error,_,snaphsot) => {
+          if (error) {
+            reject(error);
+          } 
+          else {
+            resolve(snaphsot?.val());
+          } 
         });
     });
   }
