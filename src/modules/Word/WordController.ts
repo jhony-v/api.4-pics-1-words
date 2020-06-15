@@ -8,7 +8,7 @@ export default class WordController {
     const word = new WordModel();
     const service = new WordService(word);
     const response = await service.getAllWord(start,limit);
-    return res.json(response);
+    return res.status(200).json(response);
   }
 
   async getWordById(req: Request, res: Response) {
@@ -17,7 +17,7 @@ export default class WordController {
     word.idword = id;
     const service = new WordService(word);
     const response = await service.getWordById();
-    return res.json(response);
+    return res.status(200).json(response);
   }
 
   async createNewWord(req: Request, res: Response) {
@@ -26,7 +26,7 @@ export default class WordController {
     word.props = parameters;
     const service = new WordService(word);
     const response = await service.createWord();
-    return res.json(response);
+    return res.status(201).json(response);
   }
 
   async updateWord(req: Request, res: Response) {
@@ -37,7 +37,7 @@ export default class WordController {
     word.props = parameters;
     const service = new WordService(word);
     const response = await service.updateWord();
-    return res.json(response);
+    return res.status(200).json(response);
   }
 
   async incrementPointsWordDiscover(req: Request, res: Response) {
@@ -46,6 +46,6 @@ export default class WordController {
     word.idword = id;
     const service = new WordService(word);
     const response = await service.incrementPoints();
-    return res.json(response);
+    return res.status(200).json(response);
   }
 }
