@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@types/crypto-js": "^3.1.43",
+    "@types/socket.io": "^2.1.8",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
@@ -33,6 +34,7 @@
     "firebase-admin": "^8.11.0",
     "jsonwebtoken": "^8.5.1",
     "redis": "^3.0.2",
-    "save-dev": "0.0.1-security"
+    "save-dev": "0.0.1-security",
+    "socket.io": "^2.3.0"
   }
 }

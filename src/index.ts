@@ -1,9 +1,10 @@
-import express , { Express } from "express"
-import Server from "./server";
+import ApiServer from "./www/ApiServer";
+import SocketServer from "./www/SocketServer";
+import MainServer from "./www/MainServer";
+import http from "http";
 
-const app : Express = express();
-const server : Server = new Server(app);
+const api: ApiServer = new ApiServer();
+const server: MainServer = new MainServer(api);
+const socket: SocketServer<http.Server> = new SocketServer<http.Server>(server);
 
-server.configuration();
-server.api("/api/v1");
 server.run();
