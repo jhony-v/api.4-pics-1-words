@@ -13,13 +13,13 @@ export default class SocketServer<HttpServer> {
     this.io.origins(this.originsFromAccessSocket());
   }
 
-  private originsFromAccessSocket() : string[] {
-    return [ 'http://127.0.0.1:5501','' ];
+  private originsFromAccessSocket(): string[] {
+    return ["http://127.0.0.1:5501", ""];
   }
 
   private run() {
-    this.io.of('/chat').on('connection', (socket: SocketIO.Socket) => {
-       socket.emit("nombre","daniela");
+    this.io.of("/chat").on("connection", (socket: SocketIO.Socket) => {
+      socket.emit("nombre", "pavado jaja");
     });
   }
 }

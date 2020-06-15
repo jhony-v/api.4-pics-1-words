@@ -1,5 +1,5 @@
 import FirebaseService from "../../lib/base/FirebaseService";
-import WordModel, { PropsWord } from "./WordModel";
+import WordModel, { PropsWord, TWord } from "./WordModel";
 
 type PromiseWord = Promise<PropsWord>;
 
@@ -32,13 +32,14 @@ export default class WordService extends FirebaseService {
   /**
    * Returns all the words
    */
-  getAllWord() {
+  getAllWord(start : string = '' , limit : number = 2) {
     return new Promise((resolve, reject) => {
-      this.ref().orderByChild("letters").startAt(0).limitToFirst(10).once('value', 
-        data => {
+      this.ref().orderByKey().startAt(start).limitToFirst(limit + 1).once('value', data => {
+          let allWords : TWord = <TWord>data.toJSON();
           resolve({
+            nextLink : this.word.getLastWordPaginate(allWords),
             ...this.status(true),
-            ...data.toJSON(),
+            ...this.word.getCurrentsWordsPaginate(allWords,limit),
           });
         },
         error => {
@@ -52,8 +53,7 @@ export default class WordService extends FirebaseService {
     */
   getWordById() {
     return new Promise((resolve,reject) => {
-      this.ref(this.word.idword).once('value',
-        data => {
+      this.ref(this.word.idword).once('value', data => {
           resolve({
             ...this.status(true),
             ...data.toJSON(),

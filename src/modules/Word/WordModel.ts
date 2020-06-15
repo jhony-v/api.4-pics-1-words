@@ -13,16 +13,16 @@ export type TImages = { [key: number]: string };
 export type TWord = { [key: string]: PropsWord };
 
 export default class WordModel extends ModelBase {
-  public idword: string = "";
-  public iduser: string = "";
-  public letters: string = "";
-  public dateCreated: string = "";
+  public idword: string = '';
+  public iduser: string = '';
+  public letters: string = '';
+  public dateCreated: string = '';
   public points: number = 0;
   public images: [string] | TImages = {};
   public props: PropsWord = {};
 
   constructor() {
-    super('word');
+    super("word");
   }
 
   dataCreate(): PropsWord {
@@ -46,5 +46,17 @@ export default class WordModel extends ModelBase {
     return {
       points: newPoint,
     };
+  }
+
+  getLastWordPaginate(word: TWord): string {
+    let last: string = Object.keys(word).pop() || '';
+    return last;
+  }
+
+  getCurrentsWordsPaginate(word: TWord, limit: number): TWord {
+    if (Object.keys(word).length === limit) {
+      delete word[this.getLastWordPaginate(word)];
+    }
+    return word;
   }
 }
