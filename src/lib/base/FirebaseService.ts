@@ -1,6 +1,6 @@
 import firebase from "firebase-admin";
 import { joinPath } from "../utils/helpers";
-import { database } from "./FirebaseBase";
+import { database } from "../../config/firebase";
 
 export interface Status {
   status: boolean;
