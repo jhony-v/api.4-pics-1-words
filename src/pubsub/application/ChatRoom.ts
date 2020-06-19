@@ -1,7 +1,7 @@
-import ChatRoomCommunicate from "../useCases/ChatRoomCommunicate";
-import { RedisCommander } from "../commands/RedisCommander";
-import ChatRoom from "../models/ChatRoom";
-import UserRoom from "../models/UserRoom";
+import ChatRoomCommunicate from "../domain/useCases/ChatRoomCommunicate";
+import { RedisCommander } from "../infraestructure/databaseCommands/RedisCommander";
+import ChatRoom from "../domain/models/ChatRoom";
+import UserRoom from "../domain/models/UserRoom";
 
 const { RedisCommanderInsert, RedisCommanderDelete } = RedisCommander;
 

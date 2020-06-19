@@ -1,8 +1,8 @@
 import {
   AdapterCommandInsert,
   AdapterCommandDelete,
-} from "../interfaces/AdapterCommand";
-import { redisCache } from "../../config/redis";
+} from "../../domain/interfaces/AdapterCommand";
+import { redisCache } from "../../../config/redis";
 import { Multi } from "redis";
 
 export namespace RedisCommander {
