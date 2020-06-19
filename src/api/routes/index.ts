@@ -1,6 +1,6 @@
 import { Router } from "express";
-import WordRouter from "../../modules/Word/WordRouter";
-import UserRouter from "../../modules/User/UserRouter";
+import WordRouter from "../modules/Word/WordRouter";
+import UserRouter from "../modules/User/UserRouter";
 
 const router = Router();
 

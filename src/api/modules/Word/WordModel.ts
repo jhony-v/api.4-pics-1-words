@@ -1,4 +1,4 @@
-import ModelBase from "../../lib/base/ModelBase";
+import ModelBase from "../../../lib/base/ModelBase";
 
 export interface PropsWord {
   idword?: string;

@@ -1,4 +1,4 @@
-import FirebaseService from "../../lib/base/FirebaseService";
+import FirebaseService from "../../../lib/base/FirebaseService";
 import WordModel, { PropsWord, TWord } from "./WordModel";
 
 type PromiseWord = Promise<PropsWord>;

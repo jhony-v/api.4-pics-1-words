@@ -1,5 +1,5 @@
 import UserModel, { PropsUser } from "./UserModel";
-import FirebaseService from "../../lib/base/FirebaseService";
+import FirebaseService from "../../../lib/base/FirebaseService";
 
 type PromiseUser = Promise<PropsUser>;
 type userJSON = { [key : string] : PropsUser };

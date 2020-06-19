@@ -1,4 +1,4 @@
-import RouteBase from "../../lib/base/RouteBase";
+import RouteBase from "../../../lib/base/RouteBase";
 import UserController from "./UserController";
 
 export default class UserRouter extends RouteBase<UserController> {
