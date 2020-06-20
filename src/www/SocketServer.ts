@@ -18,8 +18,6 @@ export default class SocketServer<HttpServer> {
   }
 
   private run() {
-    this.io.of("/chat").on("connection", (socket: SocketIO.Socket) => {
-      socket.emit("nombre", "pavado jaja");
-    });
+    
   }
 }
