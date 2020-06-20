@@ -1,5 +1,6 @@
 import SocketIO from "socket.io";
 import ServerAdapter from "./adapters/ServerAdapter";
+import PortChatRoomConnection from "../push/infraestructure/portsSocket/ChatRoom/PortChatRoomConnection";
 
 export default class SocketServer<HttpServer> {
   private io: SocketIO.Server;
@@ -14,10 +15,10 @@ export default class SocketServer<HttpServer> {
   }
 
   private originsFromAccessSocket(): string[] {
-    return ["http://127.0.0.1:5501", ""];
+    return ["http://127.0.0.1:5500", ""];
   }
 
   private run() {
-    
+    PortChatRoomConnection(this.io);
   }
 }
