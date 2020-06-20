@@ -4,6 +4,7 @@ import UserRouter from "../modules/User/UserRouter";
 
 const router = Router();
 
+// entry points for user and word
 router.use("/words", new WordRouter().initialize());
 router.use("/users", new UserRouter().initialize());
 
