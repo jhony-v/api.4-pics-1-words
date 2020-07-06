@@ -8,7 +8,7 @@ import { Multi } from "redis";
 export namespace RedisCommander {
   export class RedisCommanderInsert implements AdapterCommandInsert {
     insert(key: string, values: string): Promise<string> {
-      const multi  : Multi = redisCache.multi();
+      const multi: Multi = redisCache.multi();
       return new Promise((resolve, reject) => {
         multi.rpush(key, values, (error, response) => {
           resolve(response.toString());

@@ -2,6 +2,7 @@ import {
   AdapterCommandInsert,
   AdapterCommandDelete,
 } from "../interfaces/AdapterCommand";
+
 import ChatRoom from "../models/ChatRoom";
 
 export default class ChatRoomCommunicate {
@@ -11,13 +12,13 @@ export default class ChatRoomCommunicate {
   ) {}
 
   insert(room: ChatRoom) {
-    this.commanderInsert.insert(
+    return this.commanderInsert.insert(
       room.getIdChatRoom(),
       JSON.stringify(room.createUserRoomMessage())
     );
   }
 
   delete(room: ChatRoom) {
-    this.commanderDelete.delete(room.getIdChatRoom());
+    return this.commanderDelete.delete(room.getIdChatRoom());
   }
 }
