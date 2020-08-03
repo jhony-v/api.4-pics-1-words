@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import env from "../../config/env";
+import { NOT_FOUND,UNAUTHORIZED } from "http-status-codes";
 
 // authorization to access the service
 const auth = (req: Request, res: Response, next: NextFunction) => {
@@ -8,7 +9,7 @@ const auth = (req: Request, res: Response, next: NextFunction) => {
   const authorization = headers["authorization"] || headers["x-access-token"];
 
   if (!authorization) {
-    return res.status(401).send("Access denied. No Token provider");
+    return res.status(UNAUTHORIZED).send("Access denied. No Token provider");
   }
   try {
     let decode = jwt.verify(<string>authorization, <string>env.KEY_JWT);
@@ -17,7 +18,7 @@ const auth = (req: Request, res: Response, next: NextFunction) => {
       next();
     }
   } catch {
-    return res.status(404).send("Invalid token");
+    return res.status(NOT_FOUND).send("Invalid token");
   }
 };
 
