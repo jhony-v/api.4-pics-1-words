@@ -1,1 +1,1 @@
-# :zap: Api 41 words 
+# :zap: Main services api and sockets

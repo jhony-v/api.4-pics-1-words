@@ -1,7 +1,7 @@
 import SocketIO from "socket.io";
 import ServerAdapter from "./adapters/ServerAdapter";
-import PortChatRoomConnection from "../push/infraestructure/portsSocket/ChatRoom/PortChatRoomConnection";
-import { ORIGIN_ACCESS_SOCKET } from "../push/infraestructure/properties";
+import PortChatRoomConnection from "../subscriptions/infraestructure/portsSocket/ChatRoom/PortChatRoomConnection";
+import { ORIGIN_ACCESS_SOCKET } from "../subscriptions/infraestructure/properties";
 
 export default class SocketServer<HttpServer> {
   private io: SocketIO.Server;
