@@ -8,7 +8,7 @@ export default class WordController {
     const { start , limit } = req.query;
     const word = new WordModel();
     const service = new WordService(word);
-    const response = await service.getAllWord(start,limit);
+    const response = await service.getAllWord(start,Number(limit));
     return res.status(OK).json(response);
   }
 

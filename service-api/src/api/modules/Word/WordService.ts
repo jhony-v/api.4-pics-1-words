@@ -32,14 +32,16 @@ export default class WordService extends FirebaseService {
   /**
    * Returns all the words
    */
-  getAllWord(start : string = '' , limit : number = 2) {
+  getAllWord(start : string = '' , limit : number = 3) {
     return new Promise((resolve, reject) => {
       this.ref().orderByKey().startAt(start).limitToFirst(limit + 1).once('value', data => {
           let allWords : TWord = <TWord>data.toJSON();
           resolve({
-            nextLink : this.word.getLastWordPaginate(allWords),
-            ...this.status(true),
-            ...this.word.getCurrentsWordsPaginate(allWords,limit),
+            meta : {
+              nextLink : this.word.getLastWordPaginate(allWords),
+              ...this.status(true),
+            },
+            data : this.word.getCurrentsWordsPaginate(allWords,limit),
           });
         },
         error => {

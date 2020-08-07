@@ -54,7 +54,7 @@ export default class WordModel extends ModelBase {
   }
 
   getCurrentsWordsPaginate(word: TWord, limit: number): TWord {
-    if (Object.keys(word).length === limit) {
+    if (Object.keys(word).length === (limit + 1)) {
       delete word[this.getLastWordPaginate(word)];
     }
     return word;
