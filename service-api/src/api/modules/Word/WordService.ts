@@ -1,5 +1,6 @@
 import FirebaseService from "../../../lib/base/FirebaseService";
 import WordModel, { PropsWord, TWord } from "./WordModel";
+import ResponseJsonHateoas from "../../system/ResponseJsonHateoas";
 
 type PromiseWord = Promise<PropsWord>;
 
@@ -17,13 +18,10 @@ export default class WordService extends FirebaseService {
     return new Promise((resolve, reject) => {
       this.ref(this.createKey()).set(this.word.dataCreate(), (error) => {
         if (error) {
-          resolve({
-            ...this.status(true),
-            ...this.word.dataCreate(),
-          });
+          resolve( ResponseJsonHateoas.send(true,this.word.dataCreate()) );
         } 
         else {
-          reject(this.status(false));
+          reject( ResponseJsonHateoas.send(false) );
         } 
       });
     });
@@ -36,16 +34,13 @@ export default class WordService extends FirebaseService {
     return new Promise((resolve, reject) => {
       this.ref().orderByKey().startAt(start).limitToFirst(limit + 1).once('value', data => {
           let allWords : TWord = <TWord>data.toJSON();
-          resolve({
-            meta : {
-              nextLink : this.word.getLastWordPaginate(allWords),
-              ...this.status(true),
-            },
-            data : this.word.getCurrentsWordsPaginate(allWords,limit),
+          let response = ResponseJsonHateoas.send(true,this.word.getCurrentsWordsPaginate(allWords,limit),{
+            nextLink : this.word.getLastWordPaginate(allWords)
           });
+          resolve(response);
         },
         error => {
-          reject(this.status(false,error.message));
+          reject( ResponseJsonHateoas.send(false) );
         });
     });
   }
@@ -56,13 +51,10 @@ export default class WordService extends FirebaseService {
   getWordById() {
     return new Promise((resolve,reject) => {
       this.ref(this.word.idword).once('value', data => {
-          resolve({
-            ...this.status(true),
-            ...data.toJSON(),
-          });
+          resolve( ResponseJsonHateoas.send(true,<TWord>data.toJSON()) );
         },
         error => {
-          reject(this.status(false,error.message));
+          reject( ResponseJsonHateoas.send(false) );
         });
     });
   }
@@ -74,10 +66,10 @@ export default class WordService extends FirebaseService {
     return new Promise((resolve,reject) => {
       this.ref(this.word.idword).update(this.word.updateWordData(), error => {
         if (error) {
-          resolve(this.status(false,error.message));
+          resolve( ResponseJsonHateoas.send(false) );
         } 
         else {
-          reject(this.status(true));
+          reject( ResponseJsonHateoas.send(true) );
         }
       });
     })
@@ -90,13 +82,10 @@ export default class WordService extends FirebaseService {
     return new Promise((resolve, reject) => {
       this.ref(this.word.idword).child("points").transaction(this.word.incrementPoints, (error,_,snapshot) => {
         if (error) {
-          reject(this.status(false,error.message));
+          reject( ResponseJsonHateoas.send(false) );
         }
         else {
-          resolve({
-            ...this.status(true),
-            ...this.word.getPointsUpdated(snapshot?.val()),
-          });
+          resolve( ResponseJsonHateoas.send(true,this.word.getPointsUpdated(snapshot?.val()) ) );
         } 
       });
     });

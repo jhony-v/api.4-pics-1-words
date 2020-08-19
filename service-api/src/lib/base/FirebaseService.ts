@@ -2,11 +2,6 @@ import firebase from "firebase-admin";
 import { joinPath } from "../utils/helpers";
 import { database } from "../../config/firebase";
 
-export interface Status {
-  status: boolean;
-  message?: string;
-}
-
 export type FireDataBase = firebase.database.Database;
 export type Reference = firebase.database.Reference;
 
@@ -28,10 +23,4 @@ export default class FirebaseService {
     return this.name + this.ref(this.name).push().key;
   }
 
-  status(status: boolean, message: string = ""): Status {
-    return {
-      status,
-      ...(message !== "" && { message }),
-    };
-  }
 }
