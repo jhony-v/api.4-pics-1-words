@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "target": "es5",            
+    "lib": ["ES6"],
+    "types": ["reflect-metadata"],
+    "module": "commonjs",                
+    "outDir": "./dist",                  
+    "rootDir": "./src",                  
+    "strict": true,               
+    "allowJs": true,
+    "removeComments": true,       
+    "checkJs": true,
+    "moduleResolution": "Node",          
+    "esModuleInterop": true,             
+    "forceConsistentCasingInFileNames": true, 
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "traceResolution": true,
+    "isolatedModules": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
+}
