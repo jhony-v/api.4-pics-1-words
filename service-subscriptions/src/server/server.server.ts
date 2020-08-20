@@ -1,5 +1,5 @@
 import { InversifyExpressServer } from "inversify-express-utils";
-import layer from "../app/infraestructure/layers";
+import layer from "../app/infraestructure/api/layers";
 import serverSocket from "./server.socket";
 import { Application } from "express";
 import { Server } from "http";
