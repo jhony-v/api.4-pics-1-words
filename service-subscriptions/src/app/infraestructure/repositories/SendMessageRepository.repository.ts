@@ -2,6 +2,7 @@ import { injectable } from "inversify";
 import SendMessageAdapter from "../adapters/SendMessageAdapter.port";
 import useCases from "../../application/useCases";
 import SendMessageIntoRoom from "../../application/useCases/SendMessageIntoRoom";
+import redis from "../../../configuration/redis.config";
 
 @injectable()
 export default class SendMessageRepository implements SendMessageAdapter {
@@ -17,5 +18,6 @@ export default class SendMessageRepository implements SendMessageAdapter {
             username : data.username,
         }
     });
+
   }
 }
