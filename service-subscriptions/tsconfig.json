@@ -7,7 +7,7 @@
     "module": "commonjs",                
     "outDir": "./dist",                  
     "rootDir": "./src",                  
-    "strict": true,               
+    "strict": false,               
     "allowJs": true,
     "removeComments": true,       
     "checkJs": true,

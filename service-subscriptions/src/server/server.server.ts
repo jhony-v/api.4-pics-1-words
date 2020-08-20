@@ -1,5 +1,5 @@
 import { InversifyExpressServer } from "inversify-express-utils";
-import layer from "../app/infraestructure/layer";
+import layer from "../app/infraestructure/layers";
 
 async function server() {
     const inversifyServer = new InversifyExpressServer(layer, null, { rootPath: "/api" });
