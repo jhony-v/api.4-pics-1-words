@@ -1,10 +1,19 @@
 import { InversifyExpressServer } from "inversify-express-utils";
 import layer from "../app/infraestructure/layers";
+import serverSocket from "./server.socket";
+import { Application } from "express";
+import { Server } from "http";
 
-async function server() {
-    const inversifyServer = new InversifyExpressServer(layer, null, { rootPath: "/api" });
-    const app = inversifyServer.build();
-    await app.listen(8000);
-} 
-
-export default server;
+/**
+ * Run server application
+ */
+export default async function server(): Promise<void> {
+  try {
+    const inversifyServer = new InversifyExpressServer(layer);
+    const app: Application = inversifyServer.build();
+    const listenServer: Server = await app.listen(8000);
+    serverSocket(listenServer);
+  } catch (exeption) {
+    console.log(exeption);
+  }
+}
