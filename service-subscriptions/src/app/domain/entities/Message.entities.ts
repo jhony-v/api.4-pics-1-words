@@ -1,6 +1,6 @@
 import User from "./User.entities";
 
-export default class Message<T> {
+export default class Message {
   public message ?: string;
   public messageID ?: string;
   public date ?: string;

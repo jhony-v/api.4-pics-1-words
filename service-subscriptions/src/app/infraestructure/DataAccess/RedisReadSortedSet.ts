@@ -14,7 +14,7 @@ export interface ReadOnlineDataAccessAdapter {
 
 @injectable()
 export default class RedisReadSortedSet implements ReadOnlineDataAccessAdapter {
-  async read(args: ReadOnlineDataAccessProps): Promise<string> {
+  read = async (args: ReadOnlineDataAccessProps): Promise<string>  => {
     try {
       const zrange = promisify(redis.zrange).bind(redis);
       return await zrange(args.value, args.start, args.end);

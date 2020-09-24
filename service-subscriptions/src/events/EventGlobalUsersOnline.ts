@@ -3,8 +3,11 @@ import getRepository from "../app/Infraestructure/Repositories";
 import { GET_USERS_ONLINE } from "../app/Infraestructure/Repositories/GetOnlineUsersRepository";
 import UseCaseGetOnlineUsers, { OnlineUsersAdapter} from "../app/UseCases/UseCaseGetOnlineUsers";
 
-export default function EventGlobalUsersOnline(connect: socket.Socket) {
-  connect.on("users:online", async () => {
+
+const NAME_PUBSUB_ONLINE_USERS = "users:online";
+
+export default function EventGlobalUsersOnline(pubsub: socket.Socket) : void {
+  pubsub.on(NAME_PUBSUB_ONLINE_USERS, async () => {
     const repository = getRepository.get<OnlineUsersAdapter>(GET_USERS_ONLINE);
     const useCaseOnlineUsers = new UseCaseGetOnlineUsers(repository);
     const data = await useCaseOnlineUsers.getOnline({
@@ -12,6 +15,6 @@ export default function EventGlobalUsersOnline(connect: socket.Socket) {
       start: 0,
       end: -1,
     });
-    connect.emit("users:online",JSON.stringify(data));
+    pubsub.emit(NAME_PUBSUB_ONLINE_USERS,JSON.stringify(data));
   });
 }

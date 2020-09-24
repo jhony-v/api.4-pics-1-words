@@ -10,9 +10,7 @@ export interface OnlineUsersAdapter {
 
 export default class UseCaseGetOnlineUsers {
   constructor(private onlineUserAdapter: OnlineUsersAdapter) {}
-  async getOnline(parameters: GetOnlineProps): Promise<string> {
-    const data = await this.onlineUserAdapter.getOnline(parameters);
-    console.log(data.length);
-    return data;
+  getOnline = async (parameters: GetOnlineProps): Promise<string> => {
+    return  await this.onlineUserAdapter.getOnline(parameters);
   }
 }
