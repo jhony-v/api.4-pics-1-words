@@ -1,11 +1,9 @@
 import { Container } from "inversify";
-import SendMessageAdapter from "../adapters/SendMessageAdapter.adapter";
-import SendMessageRepository from "./messages/SendMessageRepository";
-import { CommandAddDataAdapter } from "../adapters/CommandsDatabase.adapter";
-import RedisAddDataRepository from "./databases/RedisAddDataRepository";
-import { COMMAND_ADD_MESSAGE_ROOM } from "../adapters/types.adapter";
+import { OnlineUsersAdapter } from "../../UseCases/UseCaseGetOnlineUsers";
+import RedisReadSortedSet, { ReadOnlineDataAccessAdapter } from "../DataAccess/RedisReadSortedSet";
+import GetOnlineUsersRepository, { GET_USERS_ONLINE } from "./GetOnlineUsersRepository";
 
 const getRepository = new Container();
-getRepository.bind<SendMessageAdapter>(SendMessageRepository).to(SendMessageRepository);
-getRepository.bind<CommandAddDataAdapter>(COMMAND_ADD_MESSAGE_ROOM.ADD_REDIS).to(RedisAddDataRepository);
+getRepository.bind<OnlineUsersAdapter>(GET_USERS_ONLINE).to(GetOnlineUsersRepository);
+getRepository.bind<ReadOnlineDataAccessAdapter>(RedisReadSortedSet).toSelf();
 export default getRepository;

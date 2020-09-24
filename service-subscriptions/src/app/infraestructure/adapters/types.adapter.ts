@@ -1,4 +1,0 @@
-export const COMMAND_ADD_MESSAGE_ROOM = {
-  ADD_REDIS : "ADD_REDIS",
-  ADD_MONGO : "ADD_MONGO",
-}
