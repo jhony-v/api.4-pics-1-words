@@ -1,4 +1,3 @@
-import { injectable } from "inversify";
 import Message, { MessageCreateID } from "../Domain/Entities/Message.entities";
 import Room from "../Domain/Entities/Room.entities";
 
@@ -11,8 +10,7 @@ export interface CreateRoomMessageAdapter {
     create(roomMessage: RoomMessageProps) : Promise<any>
 }
 
-@injectable()
-export default class UseCaseCreateNewRoomMessage implements CreateRoomMessageAdapter{
+export default class UseCaseCreateNewRoomMessage{
     constructor(private roomMessageAdapter: CreateRoomMessageAdapter){}
     create = async (roomMessage: RoomMessageProps) : Promise<any> => {
         const room = new Room();

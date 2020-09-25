@@ -9,5 +9,5 @@ export default class Message {
 }
 
 export class MessageCreateID {
-  static getID = (prefix : string = "message") : string => prefix + v4();
+  static getID = (prefix : string = "sms-") : string => prefix + v4();
 }

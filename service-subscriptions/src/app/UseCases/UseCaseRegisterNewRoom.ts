@@ -1,6 +1,6 @@
 import { RoomCreatorID } from "../Domain/Entities/Room.entities";
 
-export const NAME_LIST_CODE_ROOMS = "all_code_rooms";
+export const NAME_LIST_CODE_ROOMS = "room-";
 
 export interface RegisterNewRoomAdapter {
   registerRoom(value: string): Promise<string>;
@@ -9,7 +9,7 @@ export interface RegisterNewRoomAdapter {
 export default class UseCaseRegisterNewRoom {
   constructor(private registerNewRoomAdapter: RegisterNewRoomAdapter) {}
   registerRoom = async (): Promise<string> => {
-    const valueID = RoomCreatorID.getID(NAME_LIST_CODE_ROOMS);
+    const valueID = RoomCreatorID.getID();
     return await this.registerNewRoomAdapter.registerRoom(valueID);
   };
 }

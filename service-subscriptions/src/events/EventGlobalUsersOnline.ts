@@ -14,7 +14,6 @@ export function EventGlobalUsersOnline(pubsub: socket.Socket) : void {
     const repository = getRepository.get<OnlineUsersAdapter>(GET_USERS_ONLINE);
     const useCaseOnlineUsers = new UseCaseGetOnlineUsers(repository);
     const data = await useCaseOnlineUsers.getOnline({
-      value: "users:online",
       start: 0,
       end: -1,
     });

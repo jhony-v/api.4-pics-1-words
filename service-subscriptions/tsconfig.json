@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "resolveJsonModule": true,
+    "noEmit": true,
     "target": "es5",            
     "lib": ["ES6"],
-    "types": ["reflect-metadata"],
+    "types": ["reflect-metadata","jest"],
     "module": "commonjs",                
     "outDir": "./dist",                  
     "rootDir": "./src",                  

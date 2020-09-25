@@ -7,5 +7,5 @@ export default class Room {
 }
 
 export class RoomCreatorID {
-  static getID = (prefix : string = "room"): string => prefix + v4();
+  static getID = (prefix : string = "room-"): string => prefix + v4();
 }
