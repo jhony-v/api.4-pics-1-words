@@ -9,8 +9,7 @@ export interface RegisterNewRoomAdapter {
 export default class UseCaseRegisterNewRoom {
   constructor(private registerNewRoomAdapter: RegisterNewRoomAdapter) {}
   registerRoom = async (): Promise<string> => {
-    const roomCreator: RoomCreatorID = new RoomCreatorID(NAME_LIST_CODE_ROOMS);
-    const valueID = roomCreator.getID();
+    const valueID = RoomCreatorID.getID(NAME_LIST_CODE_ROOMS);
     return await this.registerNewRoomAdapter.registerRoom(valueID);
   };
 }

@@ -6,7 +6,10 @@ import UseCaseGetOnlineUsers, { OnlineUsersAdapter} from "../app/UseCases/UseCas
 
 const NAME_PUBSUB_ONLINE_USERS = "users:online";
 
-export default function EventGlobalUsersOnline(pubsub: socket.Socket) : void {
+/**
+ * Manage the users online in the app
+ */
+export function EventGlobalUsersOnline(pubsub: socket.Socket) : void {
   pubsub.on(NAME_PUBSUB_ONLINE_USERS, async () => {
     const repository = getRepository.get<OnlineUsersAdapter>(GET_USERS_ONLINE);
     const useCaseOnlineUsers = new UseCaseGetOnlineUsers(repository);

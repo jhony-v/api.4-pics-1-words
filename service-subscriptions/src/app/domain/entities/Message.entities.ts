@@ -1,3 +1,4 @@
+import { v4 } from "uuid";
 import User from "./User.entities";
 
 export default class Message {
@@ -5,4 +6,8 @@ export default class Message {
   public messageID ?: string;
   public date ?: string;
   public user ?: User;
+}
+
+export class MessageCreateID {
+  static getID = (prefix : string = "message") : string => prefix + v4();
 }

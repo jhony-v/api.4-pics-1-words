@@ -7,6 +7,5 @@ export default class Room {
 }
 
 export class RoomCreatorID {
-  constructor(private prefix: string) {}
-  getID = (): string => this.prefix + v4();
+  static getID = (prefix : string = "room"): string => prefix + v4();
 }

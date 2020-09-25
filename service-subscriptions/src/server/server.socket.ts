@@ -1,6 +1,6 @@
 import { Server } from "http";
 import socket from "socket.io";
-import EventGlobalUsersOnline from "../events/EventGlobalUsersOnline";
+import {EventGlobalUsersOnline} from "../events/EventGlobalUsersOnline";
 
 /**
  * Run socket server
