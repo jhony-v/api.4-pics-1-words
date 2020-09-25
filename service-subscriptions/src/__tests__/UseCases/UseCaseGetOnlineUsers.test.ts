@@ -1,9 +1,9 @@
 import UseCaseGetOnlineUsers from "../../app/UseCases/UseCaseGetOnlineUsers";
-import UsersOnlineMoock from "../../__mocks__/UsersOnlineMoock";
+import UsersOnlineMock from "../../__mocks__/UsersOnlineMock";
 
 let usersOnline;
 beforeAll(() => {
-  usersOnline = UsersOnlineMoock();
+  usersOnline = UsersOnlineMock();
 });
 
 describe("Use cases to view users online", () => {

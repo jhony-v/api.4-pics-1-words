@@ -1,5 +1,5 @@
 import Message, { MessageCreateID } from "../Domain/Entities/Message.entities";
-import Room from "../Domain/Entities/Room.entities";
+import Room from "../domain/entities/Room.entities";
 
 export interface RoomMessageProps{
     message: Message,

@@ -1,12 +1,12 @@
-import ValidateCreateNewMessageRoom from "../../app/Domain/Validators/ValidatorCreateNewMessageRoom";
+import ValidateCreateNewMessageRoom from "../../app/domain/Validators/ValidatorCreateNewMessageRoom";
 import UseCaseCreateNewRoomMessage from "../../app/UseCases/UseCaseRoomMessage";
-import MessageMoock from "../../__mocks__/MessageMoock";
+import MessageMock from "../../__mocks__/MessageMock";
 
 let useCaseCreateRoomMessage: UseCaseCreateNewRoomMessage;
 let newMessage;
 
 beforeEach(() => {
-  newMessage = MessageMoock();
+  newMessage = MessageMock();
   useCaseCreateRoomMessage = new UseCaseCreateNewRoomMessage({
     create: async (value) => value,
   });

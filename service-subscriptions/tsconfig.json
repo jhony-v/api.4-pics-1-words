@@ -14,11 +14,11 @@
     "checkJs": true,
     "moduleResolution": "Node",          
     "esModuleInterop": true,             
-    "forceConsistentCasingInFileNames": true, 
+    "forceConsistentCasingInFileNames": false, 
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "traceResolution": true,
-    "isolatedModules": true
+    "isolatedModules": true,
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]
