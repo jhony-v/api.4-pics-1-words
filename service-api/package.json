@@ -38,7 +38,6 @@
     "jsonwebtoken": "^8.5.1",
     "redis": "^3.0.2",
     "save-dev": "0.0.1-security",
-    "socket.io": "^2.3.0",
     "uuid": "^8.1.0"
   }
 }
