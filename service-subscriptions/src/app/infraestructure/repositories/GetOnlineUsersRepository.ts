@@ -1,5 +1,5 @@
 import { inject, injectable } from "inversify";
-import { GetOnlineProps, OnlineUsersAdapter } from "../../UseCases/UseCaseGetOnlineUsers";
+import { GetOnlineProps, OnlineUsersAdapter } from "../../UseCases/OnlineUsers/UseCaseGetOnlineUsers";
 import RedisReadSortedSet, { ReadOnlineDataAccessAdapter } from "../DataAccess/RedisReadSortedSet";
 
 export const GET_USERS_ONLINE = Symbol("GET_USERS_ONLINE");
@@ -7,6 +7,10 @@ export const GET_USERS_ONLINE = Symbol("GET_USERS_ONLINE");
 @injectable()
 export default class GetOnlineUsersRepository implements OnlineUsersAdapter {
   constructor(@inject(RedisReadSortedSet) private readerDataAccess: ReadOnlineDataAccessAdapter) {}
+  /**
+   * Get all users online with limit 
+   * @param parameters 
+   */
   getOnline = async (parameters : GetOnlineProps) : Promise<any> => {
     try {
       return await this.readerDataAccess.read({

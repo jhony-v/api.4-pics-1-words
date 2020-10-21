@@ -2,12 +2,12 @@ import { injectable } from "inversify";
 import { promisify } from "util";
 import redis from "../../../configuration/redis.config";
 
-export interface DeleteKeyDataAccessProp {
+export interface DeleteKeyDataAccessAdapter {
   delete(key: string): Promise<string>;
 }
 
 @injectable()
-export default class RedisDeleteKey implements DeleteKeyDataAccessProp {
+export default class RedisDeleteKey implements DeleteKeyDataAccessAdapter {
   delete = async (key: string): Promise<string> => {
     try {
       const del = promisify(redis.del).bind(redis);

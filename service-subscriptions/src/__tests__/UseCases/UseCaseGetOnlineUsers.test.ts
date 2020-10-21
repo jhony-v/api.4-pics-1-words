@@ -1,4 +1,4 @@
-import UseCaseGetOnlineUsers from "../../app/UseCases/UseCaseGetOnlineUsers";
+import UseCaseGetOnlineUsers from "../../app/UseCases/OnlineUsers/UseCaseGetOnlineUsers";
 import UsersOnlineMock from "../../__mocks__/UsersOnlineMock";
 
 let usersOnline;

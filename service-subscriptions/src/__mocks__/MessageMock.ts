@@ -1,4 +1,4 @@
-import { RoomMessageProps } from "../app/UseCases/UseCaseRoomMessage";
+import { RoomMessageProps } from "../app/UseCases/ManageRoomMessage/UseCaseManageRoomMessage";
 import cryto from "crypto";
 
 export default function MessageMoock() {

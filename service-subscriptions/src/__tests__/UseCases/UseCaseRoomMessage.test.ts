@@ -1,5 +1,5 @@
 import ValidateCreateNewMessageRoom from "../../app/domain/Validators/ValidatorCreateNewMessageRoom";
-import UseCaseCreateNewRoomMessage from "../../app/UseCases/UseCaseRoomMessage";
+import {UseCaseCreateNewRoomMessage} from "../../app/UseCases/ManageRoomMessage/UseCaseManageRoomMessage";
 import MessageMock from "../../__mocks__/MessageMock";
 
 let useCaseCreateRoomMessage: UseCaseCreateNewRoomMessage;

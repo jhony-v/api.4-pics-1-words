@@ -12,6 +12,7 @@ export default async function server(): Promise<void> {
     const inversifyServer = new InversifyExpressServer(layer);
     const app: Application = inversifyServer.build();
     const listenServer: Server = await app.listen(8000);
+    // run the socket
     serverSocket(listenServer);
   } catch (exeption) {
     console.log(exeption);
